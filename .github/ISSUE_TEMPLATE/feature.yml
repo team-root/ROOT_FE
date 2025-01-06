@@ -1,8 +1,7 @@
 name: feature
-about: feature issue templete
 title: '[FEATURE]'
-Labels: ''
-Assignees: ''
+labels: ''
+assignees: ''
 
 body:
   - type: textarea

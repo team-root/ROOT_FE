@@ -1,8 +1,8 @@
 name: Bug
-about: bug issue templete
+about: Bug issue template
 title: '[BUG]'
-Labels: ''
-Assignees: ''
+labels: ''
+assignees: ''
 
 body:
   - type: textarea
