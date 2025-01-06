@@ -1,0 +1,21 @@
+name: feature
+about: feature issue templete
+title: '[FEATURE]'
+Labels: ''
+Assignees: ''
+
+body:
+  - type: textarea
+    attributes:
+      label: detail
+      description: |
+        기능 추가 내용에 대해 자세히 작성해주세요.
+      placeholder: |
+        개발한 내용을 작성하시오.
+  - type: textarea
+    attributes:
+      label: how
+      description: |
+        어떤 기능을 추가했는지 작성해주세요.
+      placeholder: |
+        기능을 작성하시오.

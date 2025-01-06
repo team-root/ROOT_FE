@@ -1,0 +1,21 @@
+name: Bug
+about: bug issue templete
+title: '[BUG]'
+Labels: ''
+Assignees: ''
+
+body:
+  - type: textarea
+    attributes:
+      label: detail
+      description: |
+        버그 내용에 대해 자세히 작성해주세요.
+      placeholder: |
+        버그 내용을 작성하시오.
+  - type: textarea
+    attributes:
+      label: how
+      description: |
+        어떤 상황에서 버그가 발생하는지 자세히 작성해주세요.
+      placeholder: |
+        상황을 작성하시오.
