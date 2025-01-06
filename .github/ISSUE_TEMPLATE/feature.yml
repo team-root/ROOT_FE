@@ -1,8 +1,8 @@
 name: feature
-about: feature issue templete
+about: Feature issue template
 title: '[FEATURE]'
-Labels: ''
-Assignees: ''
+labels: ''
+assignees: ''
 
 body:
   - type: textarea
