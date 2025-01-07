@@ -27,3 +27,5 @@ export const colors = {
   error: '#F54B31',
 
 } as const;
+
+export type Gradient = typeof colors["main"]["300"];
