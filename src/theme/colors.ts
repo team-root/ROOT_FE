@@ -16,6 +16,11 @@ export const colors = {
   main: {
     100: '#88A0FC',
     200: '#6686FF',
+    300: {
+      from: '#D5A0FF',
+      to: '#9CE6FE',
+      direction: 'to right',
+    },
     400: '#BFCCFF',
   },
 
