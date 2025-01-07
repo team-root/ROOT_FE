@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { colors } from './colors';
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -27,5 +28,9 @@ export const GlobalStyle = createGlobalStyle`
       border: none;
       outline: none;
     }
+  }
+
+  body {
+    background-color: ${colors.gray[600]};
   }
 `;
