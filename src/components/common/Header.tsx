@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logo from "../../assets/icons/Logo.svg";
+import { Logo } from "../../assets";
 import { useState } from "react";
 import { LoginBtn } from "../header/LoginBtn";
 import { font } from "../../theme";
@@ -11,7 +11,7 @@ export const Header = () => {
     <Container>
       {isLogined && (
         <>
-          <img src={logo} alt={"logo"} />
+          <img src={Logo} alt={"logo"} />
           <Box>
             <LeftBox>
               <p>학생봉사 시간 조회/부여</p>
@@ -28,7 +28,7 @@ export const Header = () => {
       )}
       {!isLogined && (
         <Box>
-          <img src={logo} alt={"logo"} />
+          <img src={Logo} alt={"logo"} />
           <LoginBtn isLogined={isLogined} />
         </Box>
       )}

@@ -1,4 +1,5 @@
 import date from "./date.svg";
 export * from "./Eyes";
 export { date };
-export * from "./Logo.svg";
+import Logo from "./Logo.svg";
+export { Logo };
