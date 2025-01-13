@@ -10,19 +10,21 @@ export const Header = () => {
   return (
     <Container>
       <Box>
-        <img src={logo} alt={"logo"} />
-        {isLogined && (
-          <MidBox>
-            <LeftBox>
+        <LeftBox>
+          <img src={logo} alt={"logo"} />
+          {isLogined && (
+            <>
               <p>학생봉사 시간 조회/부여</p>
               <p>봉사활동 신청 조회/생성</p>
               <p>봉사 일정 확인</p>
               <p>알림 생성</p>
-            </LeftBox>
-            <p>마이페이지</p>
-          </MidBox>
-        )}
-        <LoginBtn isLogined={isLogined} />
+            </>
+          )}
+        </LeftBox>
+        <RightBox>
+          {isLogined && <p>마이페이지</p>}
+          <LoginBtn isLogined={isLogined} />
+        </RightBox>
       </Box>
     </Container>
   );
@@ -46,12 +48,12 @@ const Box = styled.div`
 
 const LeftBox = styled.div`
   display: flex;
-  gap: 82.5px;
+  gap: 80px;
   align-items: center;
 `;
 
-const MidBox = styled.div`
+const RightBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 703px;
+  gap: 44px;
 `;
