@@ -1,17 +1,16 @@
 import styled from "styled-components";
 import logo from "../../assets/icons/Logo.svg";
-import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import { font } from "../../theme";
 import { LoginBtn } from "../header/LoginBtn";
+import { font } from "../../theme";
 
 export const Header = () => {
   const [isLogined, setIsLogined] = useState<boolean>(false);
 
   return (
-    <>
-      {isLogined ? (
-        <Container>
+    <Container>
+      {isLogined && (
+        <>
           <img src={logo} alt={"logo"} />
           <Box>
             <LeftBox>
@@ -22,29 +21,29 @@ export const Header = () => {
             </LeftBox>
             <RightBox>
               <p>마이페이지</p>
-              <LoginBtn isLogined={isLogined}></LoginBtn>
+              <LoginBtn isLogined={isLogined} />
             </RightBox>
           </Box>
-        </Container>
-      ) : (
-        <Container>
-          <Box>
-            <img src={logo} alt={"logo"} />
-            <LoginBtn isLogined={isLogined}></LoginBtn>
-          </Box>
-        </Container>
+        </>
       )}
-    </>
+      {!isLogined && (
+        <Box>
+          <img src={logo} alt={"logo"} />
+          <LoginBtn isLogined={isLogined} />
+        </Box>
+      )}
+    </Container>
   );
 };
 
 const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 70px;
   display: flex;
   align-items: center;
   padding: 0 90px;
-  gap: 3vw;
+  gap: 82.5px;
+  font: ${font.Body3};
 `;
 
 const Box = styled.div`
@@ -55,18 +54,12 @@ const Box = styled.div`
 
 const LeftBox = styled.div`
   display: flex;
-  gap: 3vw;
+  gap: 82.5px;
   align-items: center;
 `;
 
 const RightBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 3vw;
-`;
-
-const StyledLink = styled(NavLink)`
-  font-size: ${font.Body3.fontSize};
-  font-weight: ${font.Body3.fontWeight};
-  line-height: ${font.Body3.lineHeight};
+  gap: 82.5px;
 `;
