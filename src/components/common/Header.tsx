@@ -1,59 +1,57 @@
 import styled from "styled-components";
-import { logo } from "../../assets";
+import { colors, font } from "../../theme";
 import { useState } from "react";
-import { LoginBtn } from "../header/LoginBtn";
-import { font } from "../../theme";
+import { LoginBtn } from "../header";
+import { logo } from "../../assets";
 
 export const Header = () => {
-  const [isLogined, setIsLogined] = useState<boolean>(true);
-
+  const [isLogin, setIsLogin] = useState<boolean>(true);
   return (
-    <Container>
-      <Box>
-        <LeftBox>
-          <img src={logo} alt={"logo"} />
-          {isLogined && (
-            <>
-              <p>학생봉사 시간 조회/부여</p>
-              <p>봉사활동 신청 조회/생성</p>
-              <p>봉사 일정 확인</p>
-              <p>알림 생성</p>
-            </>
-          )}
-        </LeftBox>
-        <RightBox>
-          {isLogined && <p>마이페이지</p>}
-          <LoginBtn isLogined={isLogined} />
-        </RightBox>
-      </Box>
-    </Container>
+    <HeaderContainer>
+      <LogoContainer>
+        <img src={logo} alt="logo" />
+        {isLogin && (
+          <NavContainer>
+            <Nav>학생봉사 시간 조회/부여</Nav>
+            <Nav>봉사활동 신청 조회/생성</Nav>
+            <Nav>봉사 일정 확인</Nav>
+            <Nav>알림 생성</Nav>
+          </NavContainer>
+        )}
+      </LogoContainer>
+      <LoginContainer>
+        {isLogin && <Nav>마이페이지</Nav>}
+        <LoginBtn isLogined={isLogin}></LoginBtn>
+      </LoginContainer>
+    </HeaderContainer>
   );
 };
 
-const Container = styled.div`
+const LogoContainer = styled.div`
+  display: flex;
+  gap: 69px;
+`;
+
+const LoginContainer = styled.div`
+  display: flex;
+  gap: 44px;
+`;
+
+const HeaderContainer = styled.header`
   width: 100vw;
   height: 70px;
   display: flex;
-  align-items: center;
-  padding: 0 90px;
-  gap: 82.5px;
-  font: ${font.Body3};
-`;
-
-const Box = styled.div`
-  width: 100%;
-  display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 89px;
 `;
 
-const LeftBox = styled.div`
+const NavContainer = styled.nav`
   display: flex;
-  gap: 80px;
-  align-items: center;
+  gap: 72px;
 `;
 
-const RightBox = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 44px;
+const Nav = styled.div`
+  font: ${font.Body3};
+  color: ${colors.gray[100]}; //path에 따라 색상변경 기능 추가
 `;
