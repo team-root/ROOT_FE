@@ -1,37 +1,29 @@
 import styled from "styled-components";
-import { Logo } from "../../assets";
+import { logo } from "../../assets";
 import { useState } from "react";
 import { LoginBtn } from "../header/LoginBtn";
 import { font } from "../../theme";
 
 export const Header = () => {
-  const [isLogined, setIsLogined] = useState<boolean>(false);
+  const [isLogined, setIsLogined] = useState<boolean>(true);
 
   return (
     <Container>
-      {isLogined && (
-        <>
-          <img src={Logo} alt={"logo"} />
-          <Box>
+      <Box>
+        <img src={logo} alt={"logo"} />
+        {isLogined && (
+          <MidBox>
             <LeftBox>
               <p>학생봉사 시간 조회/부여</p>
               <p>봉사활동 신청 조회/생성</p>
               <p>봉사 일정 확인</p>
               <p>알림 생성</p>
             </LeftBox>
-            <RightBox>
-              <p>마이페이지</p>
-              <LoginBtn isLogined={isLogined} />
-            </RightBox>
-          </Box>
-        </>
-      )}
-      {!isLogined && (
-        <Box>
-          <img src={Logo} alt={"logo"} />
-          <LoginBtn isLogined={isLogined} />
-        </Box>
-      )}
+            <p>마이페이지</p>
+          </MidBox>
+        )}
+        <LoginBtn isLogined={isLogined} />
+      </Box>
     </Container>
   );
 };
@@ -58,8 +50,8 @@ const LeftBox = styled.div`
   align-items: center;
 `;
 
-const RightBox = styled.div`
+const MidBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 82.5px;
+  gap: 703px;
 `;
