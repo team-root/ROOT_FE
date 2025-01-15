@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../theme";
 
 type Gradient = {
   direction: string;
@@ -10,21 +11,21 @@ type ButtonProps = {
   borderColor: string | Gradient;
   backgroundColor: string;
   color: string | Gradient;
-  text: string;
+  children: string;
 };
 
-type ContainerProps = Omit<ButtonProps, "text" | "color">;
+type ContainerProps = Omit<ButtonProps, "children" | "color">;
 type TextType = Pick<ButtonProps, "color">;
 
 export const Button = ({
-  borderColor,
+  borderColor = colors.main[300],
   backgroundColor,
-  color,
-  text,
+  color = colors.main[300],
+  children,
 }: ButtonProps) => {
   return (
     <Container borderColor={borderColor} backgroundColor={backgroundColor}>
-      <Text color={color}>{text}</Text>
+      <Text color={color}>{children}</Text>
     </Container>
   );
 };
