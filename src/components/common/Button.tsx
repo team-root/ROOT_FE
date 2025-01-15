@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import { colors } from '../../theme';
 
 type Gradient = {
-  direction: string;
-  from: string;
-  to: string;
+  direction?: string;
+  from?: string;
+  to?: string;
 };
 
 type ButtonProps = {
   borderColor?: string | Gradient;
   backgroundColor?: string;
   color?: string | Gradient;
-  children?: string;
+  children: string;
 };
 
 type ContainerProps = Omit<ButtonProps, 'children' | 'color'>;

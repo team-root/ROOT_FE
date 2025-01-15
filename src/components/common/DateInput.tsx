@@ -1,15 +1,20 @@
 import styled from 'styled-components';
 import { colors, font } from '../../theme';
 import { date } from '../../assets';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export const DateInput = () => {
+interface DateType {
+  onDateChange: (date: string) => void;
+}
+
+export const DateInput = ({ onDateChange }: DateType) => {
   const [dateStr, setDateStr] = useState<string>('');
   const dateInputRef = useRef<HTMLInputElement>(null);
 
   const handleBlur = () => {
     const value = dateInputRef.current?.value;
     setDateStr(value || '');
+    onDateChange(value || '');
   };
 
   const fakeDateClick = () => {
@@ -19,10 +24,11 @@ export const DateInput = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setDateStr(value || '');
+    onDateChange(value || '');
   };
 
   return (
-    <>
+    <FakeDateContainer dateStr={dateStr}>
       <FakeDate onClick={fakeDateClick} dateStr={dateStr}>
         <img src={date} alt="date" />
         <DateContent>{dateStr}</DateContent>
@@ -33,9 +39,20 @@ export const DateInput = () => {
         onChange={handleChange}
         onBlur={handleBlur}
       />
-    </>
+    </FakeDateContainer>
   );
 };
+
+const FakeDateContainer = styled.div<{ dateStr: string }>`
+  width: 50px;
+  height: 50px;
+  position: relative;
+  ${({ dateStr }) =>
+    dateStr &&
+    `
+    width: 128px;
+    `}
+`;
 
 const DateContent = styled.div`
   font: ${font.Caption2};
