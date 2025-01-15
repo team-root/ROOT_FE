@@ -6,7 +6,7 @@ import { logo } from "../../assets";
 import { useLocation } from "react-router-dom";
 
 export const Header = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
   const location = useLocation();
 
   const navItems = [
@@ -42,11 +42,13 @@ export const Header = () => {
 const LogoContainer = styled.div`
   display: flex;
   gap: 69px;
+  align-items: center;
 `;
 
 const LoginContainer = styled.div`
   display: flex;
   gap: 44px;
+  align-items: center;
 `;
 
 const HeaderContainer = styled.header`
@@ -73,6 +75,6 @@ const Nav = styled.div<{ isActive: boolean }>`
     -webkit-text-fill-color: transparent;
   `
       : `
-    color: ${colors.gray[100]};
+    color: ${colors.gray[700]};
   `};
 `;
