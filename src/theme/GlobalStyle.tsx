@@ -25,7 +25,6 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     outline: none;
     &:active {
-      border: none;
       outline: none;
     }
   }
