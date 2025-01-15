@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { colors } from '../../theme';
+import styled from "styled-components";
+import { colors } from "../../theme";
 
 type Gradient = {
   direction: string;
@@ -14,12 +14,12 @@ type ButtonProps = {
   children?: string;
 };
 
-type ContainerProps = Omit<ButtonProps, 'children' | 'color'>;
-type TextType = Pick<ButtonProps, 'color'>;
+type ContainerProps = Omit<ButtonProps, "children" | "color">;
+type TextType = Pick<ButtonProps, "color">;
 
 export const Button = ({
   borderColor = colors.main[300],
-  backgroundColor,
+  backgroundColor = colors.gray[550],
   color = colors.main[300],
   children,
 }: ButtonProps) => {
@@ -37,7 +37,7 @@ const Container = styled.button<ContainerProps>`
   background-color: transparent;
 
   ${({ borderColor, backgroundColor }) =>
-    typeof borderColor === 'object'
+    typeof borderColor === "object"
       ? `
         background-image: linear-gradient(${backgroundColor}, ${backgroundColor}), 
         linear-gradient(${borderColor.direction}, ${borderColor.from}, ${borderColor.to});
@@ -51,7 +51,7 @@ const Text = styled.p<TextType>`
   font-size: 12px;
 
   ${({ color }) =>
-    typeof color === 'object'
+    typeof color === "object"
       ? `
     background: linear-gradient(${color.direction}, ${color.from}, ${color.to});
     -webkit-background-clip: text;
