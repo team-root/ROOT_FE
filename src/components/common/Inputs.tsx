@@ -7,9 +7,15 @@ type InputType = {
   isLogin?: boolean;
   placeholder?: string;
   label?: string;
+  onChange?: () => void;
 };
 
-export const Inputs = ({ isLogin, placeholder, label }: InputType) => {
+export const Inputs = ({
+  isLogin,
+  placeholder,
+  label,
+  onChange,
+}: InputType) => {
   const [isEyes, setIsEyes] = useState<boolean>(false);
 
   const eyesClick = () => {
@@ -23,6 +29,7 @@ export const Inputs = ({ isLogin, placeholder, label }: InputType) => {
         <InputContainer
           type={isEyes ? 'password' : 'text'}
           placeholder={placeholder}
+          onChange={onChange}
         />
         {isLogin && (
           <FakeEyeContainer onClick={eyesClick}>
@@ -35,6 +42,7 @@ export const Inputs = ({ isLogin, placeholder, label }: InputType) => {
 };
 
 const LabelContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
