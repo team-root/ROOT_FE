@@ -1,27 +1,88 @@
 import styled from 'styled-components';
 import { DateInput } from './DateInput';
 import { colors, font } from '../../theme';
-import { useState } from 'react';
+import { Check } from '../../assets';
+import { DayContainer } from './DayContainer ';
 
 type DateType = {
   label?: string;
   onDateChange: (field: 'startDate' | 'endDate', value: string) => void;
+  isCheck?: boolean;
+  setIsCheck?: React.Dispatch<React.SetStateAction<boolean>>;
+  isRegular?: boolean;
+  onWorkDayChange?: (workDay: string[]) => void;
 };
 
-export const DateContainer = ({ label, onDateChange }: DateType) => {
+export const DateContainer = ({
+  label,
+  onDateChange,
+  isCheck,
+  setIsCheck,
+  isRegular,
+  onWorkDayChange,
+}: DateType) => {
+  const checkClick = () => {
+    setIsCheck(!isCheck);
+    console.log(Check);
+  };
   return (
-    <LabelContainer>
-      <Label>{label}</Label>
-      <DateContentContainer>
-        <DateInput onDateChange={(value) => onDateChange('startDate', value)} />
-        <AndContent>~</AndContent>
-        <DateInput onDateChange={(value) => onDateChange('endDate', value)} />
-      </DateContentContainer>
-    </LabelContainer>
+    <AllContainer>
+      <LabelContainer>
+        <Label>{label}</Label>
+        {isRegular && (
+          <RegularCheckContainer>
+            <RegularLabel>정기적</RegularLabel>
+            <RegularCheckBox onClick={checkClick} isCheck={isCheck}>
+              {isCheck && <Check />}
+            </RegularCheckBox>
+          </RegularCheckContainer>
+        )}
+      </LabelContainer>
+      {isCheck ? (
+        <DayContainer onWorkDayChange={onWorkDayChange} />
+      ) : (
+        <DateContentContainer>
+          <DateInput
+            onDateChange={(value) => onDateChange('startDate', value)}
+          />
+          <AndContent>~</AndContent>
+          <DateInput onDateChange={(value) => onDateChange('endDate', value)} />
+        </DateContentContainer>
+      )}
+    </AllContainer>
   );
 };
 
+
+const RegularCheckContainer = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+`;
+
+const RegularLabel = styled.label`
+  font: ${font.Caption2};
+  color: ${colors.gray[300]};
+`;
+
+const RegularCheckBox = styled.div<{ isCheck: boolean }>`
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 0.5px solid
+    ${({ isCheck }) => (isCheck ? colors.main[100] : colors.gray[400])};
+  background-color: ${({ isCheck }) =>
+    isCheck ? colors.main[100] : 'transparent'};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const LabelContainer = styled.div`
+  display: flex;
+  gap: 28px;
+`;
+
+const AllContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;

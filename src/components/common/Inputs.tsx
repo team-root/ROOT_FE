@@ -8,6 +8,8 @@ type InputType = {
   placeholder?: string;
   label?: string;
   onChange?: () => void;
+  ref?: () => void;
+  value?: string;
 };
 
 export const Inputs = ({
@@ -15,6 +17,8 @@ export const Inputs = ({
   placeholder,
   label,
   onChange,
+  ref,
+  value,
 }: InputType) => {
   const [isEyes, setIsEyes] = useState<boolean>(false);
 
@@ -30,6 +34,8 @@ export const Inputs = ({
           type={isEyes ? 'password' : 'text'}
           placeholder={placeholder}
           onChange={onChange}
+          ref={ref}
+          value={value}
         />
         {isLogin && (
           <FakeEyeContainer onClick={eyesClick}>
