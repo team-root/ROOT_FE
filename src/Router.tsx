@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { RootLayout } from './RootLayout';
-import { CreateSchedule } from './pages';
+import { CreateSchedule, CreateVolunteerActivity } from './pages';
 
 export const Router = createBrowserRouter([
   {
@@ -14,6 +14,10 @@ export const Router = createBrowserRouter([
       {
         path: '/create-schedule',
         element: <CreateSchedule />,
+      },
+      {
+        path: '/create-volunteer-activity',
+        element: <CreateVolunteerActivity />,
       },
     ],
   },
