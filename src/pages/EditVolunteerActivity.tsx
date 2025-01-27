@@ -149,12 +149,11 @@ export const EditVolunteerActivity = () => {
     }
   }, [datas.isRegular]);
 
-  
   return (
     <EditVolunteerContainer>
       <EditVolunteerContents>
         <EditVolunteerContent>
-          <Title>봉사활동 생성</Title>
+          <Title>봉사활동 수정</Title>
           <InputContainer>
             <Inputs
               label="제목"
@@ -226,7 +225,7 @@ export const EditVolunteerActivity = () => {
             </RoleContainer>
           </InputContainer>
         </EditVolunteerContent>
-        <Button backgroundColor={colors.gray[550]}>생성하기</Button>
+        <Button backgroundColor={colors.gray[550]}>수정완료</Button>
       </EditVolunteerContents>
     </EditVolunteerContainer>
   );
