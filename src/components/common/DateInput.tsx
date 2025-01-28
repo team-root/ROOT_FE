@@ -5,9 +5,10 @@ import { useEffect, useRef, useState } from 'react';
 
 interface DateType {
   onDateChange: (date: string) => void;
+  value?: string;
 }
 
-export const DateInput = ({ onDateChange }: DateType) => {
+export const DateInput = ({ onDateChange, value }: DateType) => {
   const [dateStr, setDateStr] = useState<string>('');
   const dateInputRef = useRef<HTMLInputElement>(null);
 
@@ -26,6 +27,10 @@ export const DateInput = ({ onDateChange }: DateType) => {
     setDateStr(value || '');
     onDateChange(value || '');
   };
+
+  useEffect(() => {
+    setDateStr(value || '');
+  }, [value]);
 
   return (
     <FakeDateContainer dateStr={dateStr}>

@@ -11,6 +11,11 @@ type DateType = {
   setIsCheck?: React.Dispatch<React.SetStateAction<boolean>>;
   isRegular?: boolean;
   onWorkDayChange?: (workDay: string[]) => void;
+  value: {
+    startDate: string;
+    endDate: string;
+  };
+  workDay?: string[];
 };
 
 export const DateContainer = ({
@@ -20,6 +25,8 @@ export const DateContainer = ({
   setIsCheck,
   isRegular,
   onWorkDayChange,
+  value,
+  workDay = [],
 }: DateType) => {
   const checkClick = () => {
     setIsCheck(!isCheck);
@@ -39,20 +46,23 @@ export const DateContainer = ({
         )}
       </LabelContainer>
       {isCheck ? (
-        <DayContainer onWorkDayChange={onWorkDayChange} />
+        <DayContainer onWorkDayChange={onWorkDayChange} workDay={workDay} />
       ) : (
         <DateContentContainer>
           <DateInput
             onDateChange={(value) => onDateChange('startDate', value)}
+            value={value.startDate}
           />
           <AndContent>~</AndContent>
-          <DateInput onDateChange={(value) => onDateChange('endDate', value)} />
+          <DateInput
+            onDateChange={(value) => onDateChange('endDate', value)}
+            value={value.endDate}
+          />
         </DateContentContainer>
       )}
     </AllContainer>
   );
 };
-
 
 const RegularCheckContainer = styled.div`
   display: flex;

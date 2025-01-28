@@ -4,40 +4,48 @@ import { useEffect, useState } from 'react';
 
 interface DayContainerType {
   onWorkDayChange?: (workDay: string[]) => void;
+  workDay?: string[];
 }
 
-export const DayContainer = ({ onWorkDayChange }: DayContainerType) => {
-  const [dayData, setDayData] = useState<{ day: string; isCheck: boolean }[]>([
-    { day: '일', isCheck: false },
-    { day: '월', isCheck: false },
-    { day: '화', isCheck: false },
-    { day: '수', isCheck: false },
-    { day: '목', isCheck: false },
-    { day: '금', isCheck: false },
-    { day: '토', isCheck: false },
-  ]);
+export const DayContainer = ({
+  onWorkDayChange = () => {},
+  workDay = [],
+}: DayContainerType) => {
+  const [dayData, setDayData] = useState(() =>
+    ['일', '월', '화', '수', '목', '금', '토'].map((day) => ({
+      day,
+      isCheck: workDay.includes(day),
+    }))
+  );
 
   const checkClick = (index: number) => {
-    setDayData((prev) =>
-      prev.map((data, idx) =>
+    setDayData((prev) => {
+      const newDayData = prev.map((data, idx) =>
         idx === index ? { ...data, isCheck: !data.isCheck } : data
-      )
-    );
+      );
+
+      const selectedDays = newDayData //데이터 페이지로 보내주기
+        .filter((data) => data.isCheck)
+        .map((data) => data.day);
+      onWorkDayChange(selectedDays);
+
+      return newDayData;
+    });
   };
 
   useEffect(() => {
-    const workDay = dayData
-      .filter((data) => data.isCheck)
-      .map((data) => data.day);
-    onWorkDayChange(workDay);
-  }, [dayData]);
+    setDayData((prev) =>
+      prev.map((data) => ({
+        ...data,
+        isCheck: workDay.includes(data.day),
+      }))
+    );
+  }, [workDay]);
+
   return (
     <Container>
       {dayData.map((data, index) => (
-        <FakeDate
-          isCheck={data.isCheck}
-          onClick={() => checkClick(index, data.isCheck)}
-        >
+        <FakeDate isCheck={data.isCheck} onClick={() => checkClick(index)}>
           {data.day}
         </FakeDate>
       ))}

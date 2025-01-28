@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { Button, DateContainer, Inputs, Keyword, Title } from '../components';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { colors } from '../theme';
 
-export const CreateVolunteerActivity = () => {
-  const [isCheck, setIsCheck] = useState<boolean>(false);
+export const EditVolunteerActivity = () => {
+  const [isCheck, setIsCheck] = useState<boolean>(true);
   const [roleInput, setRoleInput] = useState<string>('');
   const [datas, setDatas] = useState<{
     title: string;
@@ -18,16 +18,16 @@ export const CreateVolunteerActivity = () => {
     numberOfVolunteers: string;
     roleItems: string[];
   }>({
-    title: '',
-    activityDetails: '',
-    applicationPeriod: { startDate: '', endDate: '' },
+    title: '환경 지킴이 활동',
+    activityDetails: '청소할거임.',
+    applicationPeriod: { startDate: '2024-10-23', endDate: '2024-10-23' },
     isRegular: isCheck,
-    workDate: { startDate: '', endDate: '' },
-    workDay: [],
-    activityLocation: '',
-    volunteerHours: '',
-    numberOfVolunteers: '',
-    roleItems: [],
+    workDate: { startDate: '2024-10-23', endDate: '2024-10-23' },
+    workDay: ['월', '수'],
+    activityLocation: '교내',
+    volunteerHours: '10시간/학기',
+    numberOfVolunteers: '60명 이내',
+    roleItems: ['교장실 청소', '교장실 청소'],
   });
 
   useEffect(() => {
@@ -149,13 +149,11 @@ export const CreateVolunteerActivity = () => {
     }
   }, [datas.isRegular]);
 
-  console.log(datas);
-
   return (
-    <CreateVolunteerContainer>
-      <CreateVolunteerContents>
-        <CreateVolunteerContent>
-          <Title>봉사활동 생성</Title>
+    <EditVolunteerContainer>
+      <EditVolunteerContents>
+        <EditVolunteerContent>
+          <Title>봉사활동 수정</Title>
           <InputContainer>
             <Inputs
               label="제목"
@@ -198,7 +196,9 @@ export const CreateVolunteerActivity = () => {
               <Inputs
                 label="봉사시간"
                 placeholder="봉사시간을 입력하세요"
+                value={datas.volunteerHours}
                 onChange={handleVolunteerHoursChange}
+                workDay={datas.workDay}
               />
               <Inputs
                 label="봉사인원"
@@ -224,27 +224,27 @@ export const CreateVolunteerActivity = () => {
               </RoleContent>
             </RoleContainer>
           </InputContainer>
-        </CreateVolunteerContent>
-        <Button backgroundColor={colors.gray[550]}>생성하기</Button>
-      </CreateVolunteerContents>
-    </CreateVolunteerContainer>
+        </EditVolunteerContent>
+        <Button backgroundColor={colors.gray[550]}>수정완료</Button>
+      </EditVolunteerContents>
+    </EditVolunteerContainer>
   );
 };
 
-const CreateVolunteerContainer = styled.div`
+const EditVolunteerContainer = styled.div`
   display: flex;
   justify-content: center;
   margin: 60px 0;
 `;
 
-const CreateVolunteerContent = styled.div`
+const EditVolunteerContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 60px;
   align-items: start;
 `;
 
-const CreateVolunteerContents = styled.div`
+const EditVolunteerContents = styled.div`
   display: flex;
   flex-direction: column;
   gap: 60px;
