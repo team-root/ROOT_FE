@@ -3,3 +3,5 @@ export * from './CreateSchedule';
 export * from './VolunteerHoursModal';
 export * from './CreateVolunteerActivity';
 export * from './EditVolunteerActivity';
+export * from './CreateAlarm';
+export * from './EditAlarm';
