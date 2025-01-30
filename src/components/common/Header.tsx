@@ -1,22 +1,34 @@
-import styled from "styled-components";
-import { colors, font } from "../../theme";
-import { useState } from "react";
-import { LoginBtn } from "../header";
-import { logo } from "../../assets";
-import { useLocation } from "react-router-dom";
+import styled from 'styled-components';
+import { colors, font } from '../../theme';
+import { useEffect, useState } from 'react';
+import { LoginBtn } from '../header';
+import { logo } from '../../assets';
+import { useLocation } from 'react-router-dom';
 
 export const Header = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const location = useLocation();
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
+
+  const updateScroll = () => {
+    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', updateScroll);
+    return () => {
+      window.removeEventListener('scroll', updateScroll);
+    };
+  }, []);
 
   const navItems = [
-    { label: "학생봉사 시간 조회/부여", path: "/hours" },
-    { label: "봉사활동 신청 조회/생성", path: "/volunteer-posts" },
-    { label: "봉사 일정 확인", path: "/schedules" },
-    { label: "알림 생성", path: "/notifications" },
+    { label: '학생봉사 시간 조회/부여', path: '/hours' },
+    { label: '봉사활동 신청 조회/생성', path: '/volunteer-posts' },
+    { label: '봉사 일정 확인', path: '/schedules' },
+    { label: '알림 생성', path: '/notifications' },
   ];
   return (
-    <HeaderContainer>
+    <HeaderContainer scrollPosition={scrollPosition}>
       <LogoContainer>
         <img src={logo} alt="logo" />
         {isLogin && (
@@ -31,7 +43,7 @@ export const Header = () => {
       </LogoContainer>
       <LoginContainer>
         {isLogin && (
-          <Nav isActive={location.pathname === "/mypage"}>마이페이지</Nav>
+          <Nav isActive={location.pathname === '/mypage'}>마이페이지</Nav>
         )}
         <LoginBtn isLogined={isLogin}></LoginBtn>
       </LoginContainer>
@@ -51,13 +63,21 @@ const LoginContainer = styled.div`
   align-items: center;
 `;
 
-const HeaderContainer = styled.header`
+const HeaderContainer = styled.header<{ scrollPosition: number }>`
+  background-color: ${({ scrollPosition }) =>
+    scrollPosition ? colors.gray[600] : 'transparent'};
   width: 100vw;
   height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 89px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid
+    ${({ scrollPosition }) =>
+      scrollPosition ? colors.gray[500] : 'transparent'};
 `;
 
 const NavContainer = styled.nav`

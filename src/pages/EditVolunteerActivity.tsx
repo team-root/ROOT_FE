@@ -234,7 +234,7 @@ export const EditVolunteerActivity = () => {
 const EditVolunteerContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin: 60px 0;
+  margin: 140px 0 60px 0;
 `;
 
 const EditVolunteerContent = styled.div`

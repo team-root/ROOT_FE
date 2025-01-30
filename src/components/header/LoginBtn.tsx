@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { colors, font } from "../../theme";
+import styled from 'styled-components';
+import { colors, font } from '../../theme';
 
 type Props = {
   isLogined: boolean;
@@ -8,8 +8,8 @@ type Props = {
 export const LoginBtn = ({ isLogined }: Props) => {
   return (
     <Container>
-      {isLogined && "logout"}
-      {!isLogined && "login"}
+      {isLogined && 'logout'}
+      {!isLogined && 'login'}
     </Container>
   );
 };
@@ -24,4 +24,5 @@ const Container = styled.button`
   border: 0.5px solid ${colors.gray[300]};
   border-radius: 100px;
   background-color: transparent;
+  color: ${colors.gray[300]};
 `;

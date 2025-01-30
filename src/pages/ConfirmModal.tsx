@@ -7,13 +7,23 @@ type ConfirmType = {
   message?: string;
   setIsShow?: React.Dispatch<React.SetStateAction<boolean>>; //다른 페이지에서 버튼 클릭 시 창 열림 백그라운드 클릭 시 창 닫힘 설정
   isShow?: boolean;
+  onClickYes?: () => void;
 };
 
-export const ConfirmModal = ({ message, setIsShow, isShow }: ConfirmType) => {
+export const ConfirmModal = ({
+  message,
+  setIsShow,
+  isShow,
+  onClickYes,
+}: ConfirmType) => {
   const backRef = useRef();
 
   const backClick = (e: MouseEvent) => {
     if (backRef.current === e.target) setIsShow(false);
+  };
+
+  const noClick = () => {
+    setIsShow(false);
   };
   return (
     isShow && (
@@ -22,10 +32,18 @@ export const ConfirmModal = ({ message, setIsShow, isShow }: ConfirmType) => {
           <ContentContainer>
             <ConfirmMsg>{message}</ConfirmMsg>
             <BtnContainer>
-              <Button color={colors.main[200]} borderColor={colors.main[200]}>
+              <Button
+                color={colors.main[200]}
+                borderColor={colors.main[200]}
+                onClick={onClickYes}
+              >
                 네
               </Button>
-              <Button color={colors.error} borderColor={colors.error}>
+              <Button
+                color={colors.error}
+                borderColor={colors.error}
+                onClick={noClick}
+              >
                 아니오
               </Button>
             </BtnContainer>
@@ -44,6 +62,8 @@ const ModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  top: 0;
+  left: 0;
 `;
 
 const ContentContainer = styled.div`

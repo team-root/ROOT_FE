@@ -3,7 +3,7 @@ import { colors, font } from '../theme';
 import { Button, DateContainer, Inputs, Title } from '../components';
 import { useState } from 'react';
 
-export const EditAlarm = () => {
+export const EditSchedule = () => {
   const [datas, setDatas] = useState<{
     title: string;
     applicationPeriod: { startDate: string; endDate: string };
@@ -36,8 +36,8 @@ export const EditAlarm = () => {
   };
 
   return (
-    <AlarmContainer>
-      <AlarmContent>
+    <ScheduleContainer>
+      <ScheduleContent>
         <ContentContainer>
           <Title>일정 수정</Title>
           <Inputs
@@ -55,8 +55,8 @@ export const EditAlarm = () => {
           />
         </ContentContainer>
         <Button backgroundColor={colors.gray[550]}>수정하기</Button>
-      </AlarmContent>
-    </AlarmContainer>
+      </ScheduleContent>
+    </ScheduleContainer>
   );
 };
 
@@ -68,18 +68,18 @@ const ContentContainer = styled.div`
   align-items: start;
 `;
 
-const AlarmContent = styled.div`
+const ScheduleContent = styled.div`
   width: 840px;
   height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: end;
-  margin-top: 80px;
 `;
 
-const AlarmContainer = styled.div`
+const ScheduleContainer = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
+  margin-top: 140px;
 `;

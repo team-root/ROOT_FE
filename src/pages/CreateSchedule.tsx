@@ -1,63 +1,85 @@
 import styled from 'styled-components';
+import { colors, font } from '../theme';
 import { Button, DateContainer, Inputs, Title } from '../components';
-import { colors } from '../theme';
 import { useState } from 'react';
 
 export const CreateSchedule = () => {
-  const [inputs, setInputs] = useState<{
+  const [datas, setDatas] = useState<{
     title: string;
-    date: { startDate: string; endDate: string };
-  }>({ title: '', date: { startDate: '', endDate: '' } });
+    applicationPeriod: { startDate: string; endDate: string };
+  }>({
+    title: '',
+    applicationPeriod: {
+      startDate: '',
+      endDate: '',
+    },
+  });
+  const handleApplicationPeriodChange = (
+    field: 'startDate' | 'endDate',
+    value: string
+  ) => {
+    setDatas((prev) => ({
+      ...prev,
+      applicationPeriod: {
+        ...prev.applicationPeriod,
+        [field]: value,
+      },
+    }));
+  };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputs((prev) => ({ ...prev, title: e.target.value }));
+    const value = e.target.value;
+    setDatas((prev) => ({
+      ...prev,
+      title: value,
+    }));
   };
-
-  const handleDateChange = (field: 'startDate' | 'endDate', value: string) => {
-    setInputs((prev) => ({ ...prev, date: { ...prev.date, [field]: value } }));
-  };
-
-  console.log(inputs);
 
   return (
-    <CreateScheduleContainer>
-      <BtnContainer>
+    <ScheduleContainer>
+      <ScheduleContent>
         <ContentContainer>
           <Title>일정 생성</Title>
           <Inputs
             label="제목"
             placeholder="제목을 입력하세요"
+            value={datas.title}
             onChange={handleTitleChange}
           />
-          <DateContainer label="날짜" onDateChange={handleDateChange} />
+          <DateContainer
+            label="신청기간"
+            onDateChange={handleApplicationPeriodChange}
+            value={datas.applicationPeriod}
+            startDate={datas.applicationPeriod.startDate}
+            endDate={datas.applicationPeriod.endDate}
+          />
         </ContentContainer>
         <Button backgroundColor={colors.gray[550]}>생성하기</Button>
-      </BtnContainer>
-    </CreateScheduleContainer>
+      </ScheduleContent>
+    </ScheduleContainer>
   );
 };
 
-const CreateScheduleContainer = styled.div`
-  width: 100vw;
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const BtnContainer = styled.div`
-  width: 840px;
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  height: 660px;
-  justify-content: space-between;
-`;
-
 const ContentContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 60px;
   align-items: start;
-  width: 100%;
+`;
+
+const ScheduleContent = styled.div`
+  width: 840px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+`;
+
+const ScheduleContainer = styled.div`
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 140px;
 `;
