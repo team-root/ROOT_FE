@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { RootLayout } from './RootLayout';
 import {
-  CreateAlarm,
   CreateSchedule,
   CreateVolunteerActivity,
-  EditAlarm,
+  EditSchedule,
   EditVolunteerActivity,
+  ViewScheduleDetails,
 } from './pages';
 
 export const Router = createBrowserRouter([
@@ -18,10 +18,6 @@ export const Router = createBrowserRouter([
         element: <div>hello</div>,
       },
       {
-        path: '/create-schedule',
-        element: <CreateSchedule />,
-      },
-      {
         path: '/create-volunteer-activity',
         element: <CreateVolunteerActivity />,
       },
@@ -30,12 +26,16 @@ export const Router = createBrowserRouter([
         element: <EditVolunteerActivity />,
       },
       {
-        path: '/create-alarm',
-        element: <CreateAlarm />,
+        path: '/create-schedule',
+        element: <CreateSchedule />,
       },
       {
-        path: '/edit-alarm',
-        element: <EditAlarm />,
+        path: '/edit-schedule',
+        element: <EditSchedule />,
+      },
+      {
+        path: '/view-schedule-details/:scheduleid',
+        element: <ViewScheduleDetails />,
       },
     ],
   },
