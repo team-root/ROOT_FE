@@ -12,6 +12,7 @@ type ButtonProps = {
   backgroundColor?: string;
   color?: string | Gradient;
   children: string;
+  onClick?: () => void;
 };
 
 type ContainerProps = Omit<ButtonProps, "children" | "color">;
@@ -19,12 +20,17 @@ type TextType = Pick<ButtonProps, "color">;
 
 export const Button = ({
   borderColor = colors.main[300],
-  backgroundColor = colors.gray[550],
+  backgroundColor,
   color = colors.main[300],
   children,
+  onClick,
 }: ButtonProps) => {
   return (
-    <Container borderColor={borderColor} backgroundColor={backgroundColor}>
+    <Container
+      onClick={onClick}
+      borderColor={borderColor}
+      backgroundColor={backgroundColor}
+    >
       <Text color={color}>{children}</Text>
     </Container>
   );
