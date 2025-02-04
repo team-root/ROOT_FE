@@ -4,3 +4,6 @@ export * from './Check';
 export { date };
 import logo from './Logo.svg';
 export { logo };
+export * from './LeftArrow';
+export * from './RightArrow';
+export * from './DotModal';

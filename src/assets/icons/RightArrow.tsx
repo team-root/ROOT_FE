@@ -1,0 +1,18 @@
+export const RightArrow = () => {
+  return (
+    <svg
+      width="25"
+      height="50"
+      viewBox="0 0 25 50"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M21.1604 26.4813L9.37497 38.2667L6.42914 35.3208L16.7416 25.0083L6.42914 14.6958L9.37497 11.75L21.1604 23.5354C21.551 23.9261 21.7704 24.4559 21.7704 25.0083C21.7704 25.5608 21.551 26.0906 21.1604 26.4813Z"
+        fill="#E4E6EB"
+      />
+    </svg>
+  );
+};

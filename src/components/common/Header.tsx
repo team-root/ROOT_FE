@@ -78,6 +78,7 @@ const HeaderContainer = styled.header<{ scrollPosition: number }>`
   border-bottom: 1px solid
     ${({ scrollPosition }) =>
       scrollPosition ? colors.gray[500] : 'transparent'};
+  z-index: 10;
 `;
 
 const NavContainer = styled.nav`
