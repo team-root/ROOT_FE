@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import { CalendarContainerStyle, StyledCalendar } from './calendarStyle';
 import { DotModal, LeftArrow, RightArrow } from '../../assets';

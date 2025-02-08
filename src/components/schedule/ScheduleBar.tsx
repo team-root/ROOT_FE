@@ -16,6 +16,8 @@ export const ScheduleBar = ({ children, $end, $start }: BarType) => {
 };
 
 const BarContainer = styled.div<{ $start: boolean; $end: boolean }>`
+  margin-left: -1px;
+  width: 121px;
   height: 24px;
   border-top-left-radius: ${({ $start }) => ($start ? '4px' : '0')};
   border-bottom-left-radius: ${({ $start }) => ($start ? '4px' : '0')};
