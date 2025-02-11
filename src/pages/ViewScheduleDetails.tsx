@@ -6,8 +6,13 @@ import { ConfirmModal } from './ConfirmModal';
 import { useNavigate } from 'react-router-dom';
 
 export const ViewScheduleDetails = () => {
-  const [datas, setDatas] = useState<{ date: string; content: string }>({
-    date: '12/24',
+  const [datas, setDatas] = useState<{
+    startDate: string;
+    endDate: string;
+    content: string;
+  }>({
+    startDate: '12/24',
+    endDate: '12/24',
     content: '환경 지킴이',
   });
   const [isShowDel, setIsShowDel] = useState<boolean>(false);
@@ -39,7 +44,16 @@ export const ViewScheduleDetails = () => {
         <AllContentContainer>
           <ContentContainer>
             <DateContainer>
-              <Date>{datas.date}</Date>
+              <DateContentContainer>
+                <Date>{datas.startDate}</Date>
+                {datas.startDate !== datas.endDate && (
+                  <>
+                    <Date>~</Date>
+
+                    <Date>{datas.endDate}</Date>
+                  </>
+                )}
+              </DateContentContainer>
               <Line />
             </DateContainer>
             <Content>{datas.content}</Content>
@@ -57,6 +71,12 @@ export const ViewScheduleDetails = () => {
     </>
   );
 };
+
+const DateContentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
 
 const ScheduleDetailsContainer = styled.div`
   width: 100vw;
