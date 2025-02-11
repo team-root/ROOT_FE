@@ -7,6 +7,8 @@ import {
   EditVolunteerActivity,
   ViewScheduleDetails,
   Schedule,
+  VolunteerActivityPost,
+  CreateNotification,
 } from './pages';
 
 export const Router = createBrowserRouter([
@@ -41,6 +43,14 @@ export const Router = createBrowserRouter([
       {
         path: '/schedule',
         element: <Schedule />,
+      },
+      {
+        path: '/volunteer-activity-post',
+        element: <VolunteerActivityPost />,
+      },
+      {
+        path: '/create-notification',
+        element: <CreateNotification />,
       },
     ],
   },

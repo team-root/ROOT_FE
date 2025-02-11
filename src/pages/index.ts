@@ -6,3 +6,5 @@ export * from './CreateSchedule';
 export * from './EditSchedule';
 export * from './ViewScheduleDetails';
 export * from './Schedule';
+export * from './VolunteerActivityPost';
+export * from './CreateNotification';
