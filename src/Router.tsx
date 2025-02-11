@@ -6,6 +6,7 @@ import {
   EditSchedule,
   EditVolunteerActivity,
   ViewScheduleDetails,
+  Schedule,
 } from './pages';
 
 export const Router = createBrowserRouter([
@@ -36,6 +37,10 @@ export const Router = createBrowserRouter([
       {
         path: '/view-schedule-details/:scheduleid',
         element: <ViewScheduleDetails />,
+      },
+      {
+        path: '/schedule',
+        element: <Schedule />,
       },
     ],
   },

@@ -14,3 +14,6 @@ import watch from "./watch.svg";
 export { watch };
 import background from "./background.svg";
 export { background };
+export * from './LeftArrow';
+export * from './RightArrow';
+export * from './DotModal';
