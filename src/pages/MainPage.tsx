@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Header } from "../components";
 import { font } from "../theme";
 import { background } from "../assets";
 import { watch } from "../assets";
@@ -9,30 +8,27 @@ import { bell } from "../assets";
 
 export const MainPage = () => {
   return (
-    <>
-      <Header />
-      <Container>
-        <Img src={background} alt="배경" />
-        <Buttons>
-          <Button>
-            <img src={watch} alt="시계" />
-            <Text>학생봉사 시간 조회/부여</Text>
-          </Button>
-          <Button>
-            <img src={broom} alt="빗자루" />
-            <Text>봉사 활동 신청 조회/생성</Text>
-          </Button>
-          <Button>
-            <img src={calender} alt="달력" />
-            <Text>봉사일정 확인하기</Text>
-          </Button>
-          <Button>
-            <img src={bell} alt="종" />
-            <Text>알림 생성하기</Text>
-          </Button>
-        </Buttons>
-      </Container>
-    </>
+    <Container>
+      <Img src={background} alt="배경" />
+      <Buttons>
+        <Button>
+          <img src={watch} alt="시계" />
+          <Text>학생봉사 시간 조회/부여</Text>
+        </Button>
+        <Button>
+          <img src={broom} alt="빗자루" />
+          <Text>봉사 활동 신청 조회/생성</Text>
+        </Button>
+        <Button>
+          <img src={calender} alt="달력" />
+          <Text>봉사일정 확인하기</Text>
+        </Button>
+        <Button>
+          <img src={bell} alt="종" />
+          <Text>알림 생성하기</Text>
+        </Button>
+      </Buttons>
+    </Container>
   );
 };
 
