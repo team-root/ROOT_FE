@@ -8,3 +8,4 @@ export * from './ViewScheduleDetails';
 export * from './Schedule';
 export * from './VolunteerActivityPost';
 export * from './CreateNotification';
+export * from './VolunteerHoursGrantedModal';
