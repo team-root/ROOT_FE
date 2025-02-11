@@ -12,7 +12,7 @@ export const MainPage = () => {
     <>
       <Header />
       <Container>
-        <img src={background} alt="배경" />
+        <Img src={background} alt="배경" />
         <Buttons>
           <Button>
             <img src={watch} alt="시계" />
@@ -62,4 +62,8 @@ const Button = styled.div`
 const Text = styled.p`
   ${font.Body2};
   color: #fff;
+`;
+
+const Img = styled.img`
+  width: 100vw;
 `;
