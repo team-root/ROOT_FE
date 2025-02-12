@@ -1,14 +1,16 @@
-FROM node:20-alpine AS builder
+FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
+
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN yarn build
 
-FROM busybox:1.36-musl
-WORKDIR /www
-COPY --from=builder /app/dist .
-RUN adduser -D static
-USER static
-EXPOSE 3000
-CMD ["busybox", "httpd", "-f", "-v", "-p", "3000"]
+FROM nginx:stable-alpine AS production
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
