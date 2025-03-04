@@ -25,7 +25,6 @@ export const DropDown = () => {
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    console.log("123");
   };
 
   const selectDropdown = (x: string) => {
@@ -55,6 +54,7 @@ export const DropDown = () => {
 };
 
 const Container = styled.div`
+  position: relative;
   width: 160px;
   height: 50px;
   border: 1px solid ${colors.gray[400]};
@@ -73,12 +73,14 @@ const DropdownText = styled.p`
 `;
 
 const DropdownMenu = styled.div`
+  position: absolute;
   width: 160px;
   display: flex;
   flex-direction: column;
   background-color: ${colors.gray[550]};
   border-radius: 10px;
   border: 1px solid ${colors.gray[400]};
+  z-index: 1000;
 `;
 
 const DropdownItem = styled.div`
@@ -89,6 +91,8 @@ const DropdownItem = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${colors.gray[550]};
+  cursor: pointer;
+
   &:hover {
     background-color: ${colors.main[100]};
   }
