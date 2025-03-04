@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { colors, font } from "../../theme";
-import { useState } from "react";
+import React, { useState } from "react";
 import { DownArrow } from "../../assets";
 
-export const DropDown = () => {
+interface filterProps {
+  setFilter: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const DropDown = ({ setFilter }: filterProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>("학년순");
 
@@ -29,6 +33,7 @@ export const DropDown = () => {
 
   const selectDropdown = (x: string) => {
     setSelected(x);
+    setFilter(x);
     setIsDropdownOpen(false);
   };
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { DropDown } from "../components/search/DropDown";
 import { colors, font } from "../theme";
-import { useEffect, useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Button } from "../components";
 
 interface Student {
@@ -14,8 +14,9 @@ interface Student {
 }
 
 export const StudentSearchPage = () => {
+  const [filter, setFilter] = useState<string>("학년순");
   const [inputValue, setInputValue] = useState<string>("");
-  const [students, setStudents] = useState<Student[]>([
+  const [students] = useState<Student[]>([
     {
       id: 1,
       name: "김철수",
@@ -57,46 +58,64 @@ export const StudentSearchPage = () => {
       volunteerTime: 15,
     },
   ]);
-  const [filteredStudents, setFilteredStudents] = useState<Student[]>([]);
+
+  const filteredStudents = useMemo(() => {
+    let result = students;
+
+    if (filter !== "학년순") {
+      const G = Number(filter.charAt(0));
+      const C = Number(filter.charAt(2));
+      result = result.filter((x) => x.grade === G && x.classNum === C);
+    }
+
+    if (inputValue) {
+      result = result.filter((x) => x.name.includes(inputValue));
+    }
+
+    return result;
+  }, [filter, inputValue, students]);
 
   useEffect(() => {
-    setFilteredStudents(students.filter((x) => x.name.includes(inputValue)));
-  }, [inputValue]);
+    setFilter("학년순");
+  }, []);
 
   return (
-    <Container>
-      <TopBox>
-        학생검색
-        <SearchBox>
-          <Searchbar
-            type="text"
-            placeholder="이름을 입력하세요"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <div>
-            <DropDown />
-          </div>
-        </SearchBox>
-      </TopBox>
-      <StudentsBox>
-        {filteredStudents.map((student) => (
-          <Student>
-            <StudentLeftBox>
-              {student.name}
-              <Grade>{student.grade}학년</Grade>
-            </StudentLeftBox>
-            {student.volunteerTime}시간
-          </Student>
-        ))}
-      </StudentsBox>
+    <>
+      <Container>
+        <TopBox>
+          학생검색
+          <SearchBox>
+            <Searchbar
+              type="text"
+              placeholder="이름을 입력하세요"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+            <div>
+              <DropDown setFilter={setFilter} />
+            </div>
+          </SearchBox>
+        </TopBox>
+        <StudentsBox>
+          {filteredStudents.map((student) => (
+            <Student key={student.id}>
+              <StudentLeftBox>
+                {student.name}
+                <Grade>{student.grade}학년</Grade>
+              </StudentLeftBox>
+              {student.volunteerTime}시간
+            </Student>
+          ))}
+        </StudentsBox>
+      </Container>
       <Btn>
         <Button backgroundColor={colors.gray[550]} children="시간 부여" />
       </Btn>
-    </Container>
+    </>
   );
 };
 
+// 🎨 스타일 코드 (변경 없음)
 const Container = styled.div`
   width: 100vw;
   margin-top: 70px;
