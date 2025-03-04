@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { DropDown } from "../components/search/DropDown";
 import { colors, font } from "../theme";
 import { useEffect, useState } from "react";
+import { Button } from "../components";
 
 interface Student {
   id: number;
@@ -89,6 +90,9 @@ export const StudentSearchPage = () => {
           </Student>
         ))}
       </StudentsBox>
+      <Btn>
+        <Button backgroundColor={colors.gray[550]} children="시간 부여" />
+      </Btn>
     </Container>
   );
 };
@@ -97,6 +101,13 @@ const Container = styled.div`
   width: 100vw;
   margin-top: 70px;
   padding-top: 70px;
+  position: relative;
+`;
+
+const Btn = styled.div`
+  position: absolute;
+  bottom: 7.5vh;
+  right: 12vw;
 `;
 
 const TopBox = styled.div`
