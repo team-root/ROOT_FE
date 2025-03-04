@@ -115,7 +115,6 @@ export const StudentSearchPage = () => {
   );
 };
 
-// 🎨 스타일 코드 (변경 없음)
 const Container = styled.div`
   width: 100vw;
   margin-top: 70px;
