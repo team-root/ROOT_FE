@@ -6,6 +6,7 @@ type StudentProps = {
   name: string;
   grade: number;
   volunteerTime: number;
+  isSelected: boolean;
   onClick: () => void;
 };
 
@@ -13,12 +14,10 @@ export const Students = ({
   name,
   grade,
   volunteerTime,
+  isSelected,
   onClick,
 }: StudentProps) => {
-  const [isSelected, setIsSelected] = useState<boolean>(false);
-
   const handleClick = () => {
-    setIsSelected(!isSelected);
     onClick();
   };
 

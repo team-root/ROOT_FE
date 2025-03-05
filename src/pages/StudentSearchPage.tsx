@@ -4,6 +4,7 @@ import { colors, font } from "../theme";
 import { useState, useMemo, useEffect } from "react";
 import { Button, Students } from "../components";
 import { noSearch } from "../assets";
+import { VolunteerHoursGrantedModal } from "./VolunteerHoursGrantedModal";
 
 export interface Student {
   id: number;
@@ -60,6 +61,7 @@ export const StudentSearchPage = () => {
     },
   ]);
   const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
+  const [isShow, setIsShow] = useState<boolean>(false);
 
   const filteredStudents = useMemo(() => {
     let result = students;
@@ -89,6 +91,10 @@ export const StudentSearchPage = () => {
     );
   };
 
+  const handleGrantHours = () => {
+    setIsShow(false);
+  };
+
   return (
     <>
       <Container>
@@ -114,6 +120,7 @@ export const StudentSearchPage = () => {
                 name={student.name}
                 volunteerTime={student.volunteerTime}
                 grade={student.grade}
+                isSelected={selectedStudents.some((s) => s.id === student.id)}
                 onClick={() => handleSelectStudent(student)}
               />
             ))
@@ -124,9 +131,18 @@ export const StudentSearchPage = () => {
       </Container>
       {filteredStudents.length > 0 && (
         <Btn>
-          <Button backgroundColor={colors.gray[550]} children="시간 부여" />
+          <Button
+            backgroundColor={colors.gray[550]}
+            children="시간 부여"
+            onClick={() => setIsShow(true)}
+          />
         </Btn>
       )}
+      <VolunteerHoursGrantedModal
+        isShow={isShow}
+        setIsShow={setIsShow}
+        onClick={handleGrantHours}
+      />
     </>
   );
 };
