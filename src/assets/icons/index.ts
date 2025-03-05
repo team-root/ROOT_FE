@@ -19,3 +19,5 @@ export * from "./RightArrow";
 export * from "./DotModal";
 import DownArrow from "./DownArrow.svg";
 export { DownArrow };
+import noSearch from "./noSearch.svg";
+export { noSearch };
