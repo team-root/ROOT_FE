@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { colors, font } from "../../theme";
-import { useState } from "react";
+import React, { useState } from "react";
 import { DownArrow } from "../../assets";
 
-export const DropDown = () => {
+interface filterProps {
+  setFilter: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const DropDown = ({ setFilter }: filterProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>("학년순");
 
@@ -25,11 +29,11 @@ export const DropDown = () => {
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    console.log("123");
   };
 
   const selectDropdown = (x: string) => {
     setSelected(x);
+    setFilter(x);
     setIsDropdownOpen(false);
   };
 
@@ -55,6 +59,7 @@ export const DropDown = () => {
 };
 
 const Container = styled.div`
+  position: relative;
   width: 160px;
   height: 50px;
   border: 1px solid ${colors.gray[400]};
@@ -73,12 +78,14 @@ const DropdownText = styled.p`
 `;
 
 const DropdownMenu = styled.div`
+  position: absolute;
   width: 160px;
   display: flex;
   flex-direction: column;
   background-color: ${colors.gray[550]};
   border-radius: 10px;
   border: 1px solid ${colors.gray[400]};
+  z-index: 1000;
 `;
 
 const DropdownItem = styled.div`
@@ -89,6 +96,8 @@ const DropdownItem = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${colors.gray[550]};
+  cursor: pointer;
+
   &:hover {
     background-color: ${colors.main[100]};
   }
