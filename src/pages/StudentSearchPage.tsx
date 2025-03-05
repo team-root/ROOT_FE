@@ -2,9 +2,10 @@ import styled from "styled-components";
 import { DropDown } from "../components/search/DropDown";
 import { colors, font } from "../theme";
 import { useState, useMemo, useEffect } from "react";
-import { Button } from "../components";
+import { Button, Students } from "../components";
+import { noSearch } from "../assets";
 
-interface Student {
+export interface Student {
   id: number;
   name: string;
   grade: number;
@@ -58,6 +59,7 @@ export const StudentSearchPage = () => {
       volunteerTime: 15,
     },
   ]);
+  const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
 
   const filteredStudents = useMemo(() => {
     let result = students;
@@ -79,6 +81,14 @@ export const StudentSearchPage = () => {
     setFilter("학년순");
   }, []);
 
+  const handleSelectStudent = (student: Student) => {
+    setSelectedStudents((prev) =>
+      prev.some((s) => s.id === student.id)
+        ? prev.filter((s) => s.id !== student.id)
+        : [...prev, student]
+    );
+  };
+
   return (
     <>
       <Container>
@@ -97,20 +107,26 @@ export const StudentSearchPage = () => {
           </SearchBox>
         </TopBox>
         <StudentsBox>
-          {filteredStudents.map((student) => (
-            <Student key={student.id}>
-              <StudentLeftBox>
-                {student.name}
-                <Grade>{student.grade}학년</Grade>
-              </StudentLeftBox>
-              {student.volunteerTime}시간
-            </Student>
-          ))}
+          {filteredStudents.length > 0 ? (
+            filteredStudents.map((student) => (
+              <Students
+                key={student.id}
+                name={student.name}
+                volunteerTime={student.volunteerTime}
+                grade={student.grade}
+                onClick={() => handleSelectStudent(student)}
+              />
+            ))
+          ) : (
+            <NoSearchBox src={noSearch} alt="검색 결과 없음" />
+          )}
         </StudentsBox>
       </Container>
-      <Btn>
-        <Button backgroundColor={colors.gray[550]} children="시간 부여" />
-      </Btn>
+      {filteredStudents.length > 0 && (
+        <Btn>
+          <Button backgroundColor={colors.gray[550]} children="시간 부여" />
+        </Btn>
+      )}
     </>
   );
 };
@@ -164,7 +180,8 @@ const StudentsBox = styled.div`
   align-items: center;
   margin-top: 42px;
   overflow-y: auto;
-  max-height: 64vh;
+  height: 64vh;
+  padding-top: 5px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -173,37 +190,7 @@ const StudentsBox = styled.div`
   scrollbar-width: none;
 `;
 
-const Student = styled.div`
-  width: 1000px;
-  height: 158px;
-  border-radius: 20px;
-  background-color: ${colors.gray[550]};
-  padding: 45px 75px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  ${font.Heading5};
-  color: #fff;
-`;
-
-const StudentLeftBox = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  ${font.Heading6};
-  color: ${colors.gray[200]};
-`;
-
-const Grade = styled.div`
-  ${font.Caption3};
-  color: ${colors.main[200]};
-  border: 1px solid ${colors.main[200]};
-  border-radius: 12px;
-  width: 64px;
-  height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
+const NoSearchBox = styled.img`
+  margin-top: auto;
+  margin-bottom: auto;
 `;
