@@ -4,3 +4,4 @@ export * from "./volunteer-hoursModal";
 export * from "./schedule";
 export * from "./volunteerActivityPost";
 export * from "./mypage";
+export * from "./volunteerContent";
