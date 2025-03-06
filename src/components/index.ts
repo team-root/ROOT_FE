@@ -5,3 +5,4 @@ export * from "./schedule";
 export * from "./volunteerActivityPost";
 export * from "./mypage";
 export * from "./volunteerContent";
+export * from "./applicationDetail";
