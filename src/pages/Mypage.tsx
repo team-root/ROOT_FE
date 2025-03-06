@@ -69,6 +69,7 @@ export const Mypage = () => {
 
 const Container = styled.div`
   width: 100vw;
+  height: calc(100vh - 70px);
   padding-top: 70px;
   display: flex;
   justify-content: center;
@@ -139,7 +140,6 @@ const ProfileName = styled.p`
 
 const Notifications = styled.div`
   width: 728px;
-  height: 340px;
   display: flex;
   gap: 44px;
   flex-direction: column;
