@@ -21,3 +21,4 @@ import DownArrow from "./DownArrow.svg";
 export { DownArrow };
 import noSearch from "./noSearch.svg";
 export { noSearch };
+export { default as profile } from "./profile.svg";
