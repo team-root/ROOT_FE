@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { colors, font } from "../../theme";
 
 export interface StudentApplication {
-  nameId: number;
+  applicationId: number;
   name: string;
-  grade: string;
+  grade: number;
 }
 
 export const StudentApplication = ({
-  nameId,
+  applicationId,
   name,
   grade,
 }: StudentApplication) => {

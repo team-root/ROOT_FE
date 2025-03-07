@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { VolunteerBar } from "../components";
 import { colors, font } from "../theme";
 
-interface ApplicationPeriod {
+interface Period {
   startDate: string;
   endDate: string;
 }
@@ -13,11 +13,18 @@ interface Role {
   title: string;
 }
 
+interface DayOfWeek {
+  dayId: number;
+  dayOfWeek: string;
+}
+
 interface Volunteer {
   id: number;
   title: string;
   content: string;
-  applicationPeriod: ApplicationPeriod;
+  applicationPeriod: Period;
+  dayOfWeek?: DayOfWeek[];
+  workDate?: Period;
   place: string;
   time: string;
   personnel: string;
@@ -40,9 +47,19 @@ export const VolunteerContentPage = () => {
     title: "환경지킴이 봉사단",
     content: "환경 지킴이는 교내를 깨끗하게 가꾸는 활동입니다.",
     applicationPeriod: {
-      startDate: "2024.05.01",
-      endDate: "2024.05.15",
+      startDate: "2024.XX.XX",
+      endDate: "2024.XX.XX",
     },
+    dayOfWeek: [
+      {
+        dayId: 1,
+        dayOfWeek: "수",
+      },
+      {
+        dayId: 2,
+        dayOfWeek: "목",
+      },
+    ],
     place: "교내",
     time: "10시간/학기",
     personnel: "학기별 60명 내외",
@@ -83,8 +100,13 @@ export const VolunteerContentPage = () => {
         <ContentCard>
           <ContentTitle>{titles[2]}</ContentTitle>
           <Hr />
-          {volInfo.applicationPeriod.startDate} ~{" "}
-          {volInfo.applicationPeriod.endDate}
+          <DateBox>
+            {volInfo.workDate
+              ? `${volInfo.workDate.startDate} ~ ${volInfo.workDate.endDate}`
+              : volInfo.dayOfWeek
+              ? volInfo.dayOfWeek.map((day) => <Date>{day.dayOfWeek}</Date>)
+              : "정보 없음"}
+          </DateBox>
         </ContentCard>
         <ContentCard>
           <ContentTitle>{titles[3]}</ContentTitle>
@@ -195,4 +217,21 @@ const TextBtn = styled.p`
   cursor: pointer;
   ${font.Caption2};
   color: #fff;
+`;
+
+const Date = styled.div`
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  border: 1px solid ${colors.main[200]};
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${font.Body3}
+`;
+
+const DateBox = styled.div`
+  display: flex;
+  gap: 15px;
 `;

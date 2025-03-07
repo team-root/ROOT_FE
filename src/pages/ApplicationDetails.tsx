@@ -3,37 +3,69 @@ import styled from "styled-components";
 import { StudentApplication, VolunteerBar } from "../components";
 import { colors } from "../theme";
 
-interface Applications {
-  applicants: StudentApplication[];
+interface Applicant {
+  applicationId: number;
+  userId: number;
+  name: string;
+  grade: number;
+  classNum: number;
+  number: number;
+}
+
+interface ApplicantsData {
+  applicants: Applicant[];
 }
 
 export const ApplicationDetails = () => {
-  const [applications, setApplications] = useState<Applications>({
+  const [applications, setApplications] = useState<ApplicantsData>({
     applicants: [
       {
-        nameId: 1,
+        applicationId: 1,
+        userId: 2,
         name: "박지연",
-        grade: "1학년",
+        grade: 1,
+        classNum: 1,
+        number: 12,
       },
       {
-        nameId: 2,
+        applicationId: 2,
+        userId: 1,
         name: "김시우",
-        grade: "1학년",
+        grade: 1,
+        classNum: 1,
+        number: 3,
       },
       {
-        nameId: 3,
-        name: "이민재",
-        grade: "2학년",
+        applicationId: 3,
+        userId: 3,
+        name: "이서연",
+        grade: 2,
+        classNum: 3,
+        number: 8,
       },
       {
-        nameId: 4,
-        name: "정수빈",
-        grade: "2학년",
+        applicationId: 4,
+        userId: 4,
+        name: "정민호",
+        grade: 3,
+        classNum: 2,
+        number: 5,
       },
       {
-        nameId: 5,
-        name: "최윤호",
-        grade: "3학년",
+        applicationId: 5,
+        userId: 5,
+        name: "최다은",
+        grade: 2,
+        classNum: 4,
+        number: 9,
+      },
+      {
+        applicationId: 6,
+        userId: 6,
+        name: "한지후",
+        grade: 3,
+        classNum: 1,
+        number: 17,
       },
     ],
   });
@@ -46,7 +78,7 @@ export const ApplicationDetails = () => {
       <MainBox>
         {applications.applicants.map((student) => (
           <StudentApplication
-            nameId={student.nameId}
+            applicationId={student.applicationId}
             name={student.name}
             grade={student.grade}
           />
