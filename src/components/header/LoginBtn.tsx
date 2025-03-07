@@ -1,16 +1,32 @@
-import styled from 'styled-components';
-import { colors, font } from '../../theme';
+import styled from "styled-components";
+import { colors, font } from "../../theme";
+import { useState } from "react";
+import { LoginModal } from "../../pages/LoginModal";
 
 type Props = {
   isLogined: boolean;
 };
 
 export const LoginBtn = ({ isLogined }: Props) => {
+  const [isLoginModalOpen, setLoginModalOpen] = useState<boolean>(false);
+
+  const handleLogin = (id: string, password: string) => {
+    console.log("로그인 시도:", id, password);
+    setLoginModalOpen(false);
+  };
+
   return (
-    <Container>
-      {isLogined && 'logout'}
-      {!isLogined && 'login'}
-    </Container>
+    <>
+      <Container onClick={() => setLoginModalOpen(true)}>
+        {isLogined && "logout"}
+        {!isLogined && "login"}
+      </Container>
+      <LoginModal
+        isShow={isLoginModalOpen}
+        setIsShow={setLoginModalOpen}
+        onLogin={handleLogin}
+      />
+    </>
   );
 };
 
