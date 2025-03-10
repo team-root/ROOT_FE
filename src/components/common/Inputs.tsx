@@ -1,13 +1,13 @@
-import styled from 'styled-components';
-import { colors, font } from '../../theme';
-import { Eyes } from '../../assets/icons/Eyes';
-import { useState } from 'react';
+import styled from "styled-components";
+import { colors, font } from "../../theme";
+import { Eyes } from "../../assets/icons/Eyes";
+import { useState } from "react";
 
 type InputType = {
   isLogin?: boolean;
   placeholder?: string;
   label?: string;
-  onChange?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: () => void;
   value?: string;
 };
@@ -31,7 +31,7 @@ export const Inputs = ({
       <Label>{label}</Label>
       <FakeInputContainer>
         <InputContainer
-          type={isEyes ? 'password' : 'text'}
+          type={isEyes ? "password" : "text"}
           placeholder={placeholder}
           onChange={onChange}
           ref={ref}
