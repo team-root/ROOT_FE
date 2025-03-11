@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { mainpageImg } from "../assets";
-import { useEffect, useRef } from "react";
 
 export const MainPage = () => {
   return (

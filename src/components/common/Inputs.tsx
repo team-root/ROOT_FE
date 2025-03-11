@@ -10,6 +10,7 @@ type InputType = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: () => void;
   value?: string;
+  isfail?: boolean;
 };
 
 export const Inputs = ({
@@ -19,6 +20,7 @@ export const Inputs = ({
   onChange,
   ref,
   value,
+  isfail,
 }: InputType) => {
   const [isEyes, setIsEyes] = useState<boolean>(false);
 
@@ -36,6 +38,7 @@ export const Inputs = ({
           onChange={onChange}
           ref={ref}
           value={value}
+          isfail={isfail}
         />
         {isLogin && (
           <FakeEyeContainer onClick={eyesClick}>
@@ -60,7 +63,7 @@ const Label = styled.label`
   color: ${colors.gray[300]};
 `;
 
-const InputContainer = styled.input`
+const InputContainer = styled.input<{ isfail?: boolean }>`
   &::placeholder {
     color: ${colors.gray[300]};
   }
@@ -72,6 +75,7 @@ const InputContainer = styled.input`
   border-radius: 10px;
   padding-left: 28px;
   background-color: ${colors.gray[550]};
+  border-color: ${({ isfail }) => (isfail ? colors.error : colors.gray[400])};
 `;
 
 const FakeInputContainer = styled.div`
