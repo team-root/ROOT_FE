@@ -96,6 +96,6 @@ const Nav = styled.div<{ isActive: boolean }>`
     -webkit-text-fill-color: transparent;
   `
       : `
-    color: ${colors.gray[700]};
+    color: ${colors.gray[100]};
   `};
 `;

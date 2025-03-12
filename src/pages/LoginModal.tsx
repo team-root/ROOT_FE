@@ -13,6 +13,7 @@ export const LoginModal = ({ isShow, setIsShow, onLogin }: LoginModalProps) => {
   const backRef = useRef(null);
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [isFail, setIsFail] = useState<boolean>(false);
 
   const backClick = (e: React.MouseEvent) => {
     if (backRef.current === e.target) setIsShow && setIsShow(false);
@@ -26,21 +27,28 @@ export const LoginModal = ({ isShow, setIsShow, onLogin }: LoginModalProps) => {
           <Description>이용하려면 로그인하세요</Description>
           <InputContainer>
             <InputBox>
-              아이디
               <Inputs
+                label="아이디"
                 placeholder="아이디를 입력하세요"
                 value={id}
                 onChange={(e) => setId(e.target.value)}
               />
             </InputBox>
             <InputBox>
-              비밀번호
               <Inputs
-                isLogin
+                label="비밀번호"
+                isLogin={true}
                 placeholder="비밀번호를 입력하세요"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                isfail={isFail}
               />
+              {isFail && (
+                <RedText>
+                  등록되지 않은 아이디이거나 아이디 또는 비밀번호가
+                  잘못되었습니다.
+                </RedText>
+              )}
             </InputBox>
           </InputContainer>
           <ButtonContainer>
@@ -94,6 +102,7 @@ const InputContainer = styled.div`
   gap: 34px;
   width: 100%;
   margin-top: 20px;
+  position: relative;
 `;
 
 const ButtonContainer = styled.div`
@@ -121,4 +130,12 @@ const InputBox = styled.div`
   flex-direction: column;
   ${font.Caption1};
   color: ${colors.gray[300]};
+`;
+
+const RedText = styled.p`
+  color: ${colors.error};
+  ${font.Caption2};
+  font-weight: 700;
+  position: absolute;
+  bottom: -25px;
 `;
