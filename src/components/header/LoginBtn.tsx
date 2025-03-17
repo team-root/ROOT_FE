@@ -5,26 +5,32 @@ import { LoginModal } from "../../pages/LoginModal";
 
 type Props = {
   isLogined: boolean;
+  setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const LoginBtn = ({ isLogined }: Props) => {
+export const LoginBtn = ({ isLogined, setIsLogin }: Props) => {
   const [isLoginModalOpen, setLoginModalOpen] = useState<boolean>(false);
 
-  const handleLogin = (id: string, password: string) => {
-    console.log("로그인 시도:", id, password);
-    setLoginModalOpen(false);
+  const handleClick = (isLogined: boolean) => {
+    if (isLogined) {
+      setIsLogin(false);
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+    } else {
+      setLoginModalOpen(true);
+    }
   };
 
   return (
     <>
-      <Container onClick={() => setLoginModalOpen(true)}>
+      <Container onClick={() => handleClick(isLogined)}>
         {isLogined && "logout"}
         {!isLogined && "login"}
       </Container>
       <LoginModal
         isShow={isLoginModalOpen}
         setIsShow={setLoginModalOpen}
-        onLogin={handleLogin}
+        setIsLogin={setIsLogin}
       />
     </>
   );

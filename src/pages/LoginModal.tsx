@@ -1,23 +1,48 @@
 import styled from "styled-components";
 import { colors, font } from "../theme";
 import { Button, Inputs } from "../components";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { login } from "../apis/login";
 
 type LoginModalProps = {
   isShow?: boolean;
-  setIsShow?: React.Dispatch<React.SetStateAction<boolean>>;
-  onLogin?: (id: string, password: string) => void;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const LoginModal = ({ isShow, setIsShow, onLogin }: LoginModalProps) => {
+export const LoginModal = ({
+  isShow,
+  setIsShow,
+  setIsLogin,
+}: LoginModalProps) => {
   const backRef = useRef(null);
-  const [id, setId] = useState("");
+  const [xquareId, setXquareId] = useState("");
   const [password, setPassword] = useState("");
   const [isFail, setIsFail] = useState<boolean>(false);
 
   const backClick = (e: React.MouseEvent) => {
     if (backRef.current === e.target) setIsShow && setIsShow(false);
+    setIsFail(false);
   };
+
+  const handleLogin = async () => {
+    try {
+      const response = await login({ xquareId, password, deviceToken: null });
+      console.log("로그인 성공", response);
+      setIsShow(false);
+      setIsFail(false);
+      setIsLogin(true);
+      setPassword("");
+      setXquareId("");
+    } catch (error) {
+      console.log("로그인 실패", error);
+      setIsFail(true);
+    }
+  };
+
+  useEffect(() => {
+    console.log(xquareId, password);
+  }, [xquareId, password]);
 
   return (
     isShow && (
@@ -30,8 +55,8 @@ export const LoginModal = ({ isShow, setIsShow, onLogin }: LoginModalProps) => {
               <Inputs
                 label="아이디"
                 placeholder="아이디를 입력하세요"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
+                value={xquareId}
+                onChange={(e) => setXquareId(e.target.value)}
               />
             </InputBox>
             <InputBox>
@@ -52,7 +77,7 @@ export const LoginModal = ({ isShow, setIsShow, onLogin }: LoginModalProps) => {
             </InputBox>
           </InputContainer>
           <ButtonContainer>
-            <LoginButton>로그인</LoginButton>
+            <LoginButton onClick={handleLogin}>로그인</LoginButton>
           </ButtonContainer>
         </Content>
       </ModalBackground>
