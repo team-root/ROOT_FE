@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors, font } from "../../theme";
 import { Eyes } from "../../assets/icons/Eyes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type InputType = {
   isLogin?: boolean;
@@ -27,6 +27,12 @@ export const Inputs = ({
   const eyesClick = () => {
     setIsEyes(!isEyes);
   };
+
+  useEffect(() => {
+    if (isLogin) {
+      setIsEyes(!isEyes);
+    }
+  }, []);
 
   return (
     <LabelContainer>

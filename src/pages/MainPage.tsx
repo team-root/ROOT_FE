@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {
   backgroundLogo,
   laptop,
-  mainpageImg,
   nextphoneArrow,
   nextSectionArrow,
   phone,
