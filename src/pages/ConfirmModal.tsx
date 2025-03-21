@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { colors, font } from '../theme';
 import { Button } from '../components';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 type ConfirmType = {
   message?: string;
-  setIsShow?: React.Dispatch<React.SetStateAction<boolean>>; //다른 페이지에서 버튼 클릭 시 창 열림 백그라운드 클릭 시 창 닫힘 설정
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>; //다른 페이지에서 버튼 클릭 시 창 열림 백그라운드 클릭 시 창 닫힘 설정
   isShow?: boolean;
   onClickYes?: () => void;
 };
@@ -16,9 +16,9 @@ export const ConfirmModal = ({
   isShow,
   onClickYes,
 }: ConfirmType) => {
-  const backRef = useRef();
+  const backRef = useRef<HTMLDivElement>(null);
 
-  const backClick = (e: MouseEvent) => {
+  const backClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
     if (backRef.current === e.target) setIsShow(false);
   };
 

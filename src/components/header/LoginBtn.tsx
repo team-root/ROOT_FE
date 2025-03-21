@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, font } from '../../theme';
+import { colors } from '../../theme';
 
 type Props = {
   isLogined: boolean;

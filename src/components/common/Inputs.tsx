@@ -7,9 +7,9 @@ type InputType = {
   isLogin?: boolean;
   placeholder?: string;
   label?: string;
-  onChange?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: () => void;
-  value?: string;
+  value?: string | number;
 };
 
 export const Inputs = ({

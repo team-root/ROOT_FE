@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { Button, DateContainer, Inputs, Keyword, Title } from '../components';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { colors } from '../theme';
+import { apiCreateVolunteerActivity } from '../apis';
 
 export const CreateVolunteerActivity = () => {
   const [isCheck, setIsCheck] = useState<boolean>(false);
@@ -12,23 +13,52 @@ export const CreateVolunteerActivity = () => {
     applicationPeriod: { startDate: string; endDate: string };
     isRegular: boolean;
     workDate: { startDate: string; endDate: string };
-    workDay: string[];
+    workDay: { dayId: string; dayOfWeek: string }[];
     activityLocation: string;
     volunteerHours: string;
     numberOfVolunteers: string;
-    roleItems: string[];
+    roleItems: { roleId: string; title: string }[];
   }>({
     title: '',
     activityDetails: '',
     applicationPeriod: { startDate: '', endDate: '' },
     isRegular: isCheck,
     workDate: { startDate: '', endDate: '' },
-    workDay: [],
-    activityLocation: '',
-    volunteerHours: '',
-    numberOfVolunteers: '',
-    roleItems: [],
+    workDay: [], //api dayOfWeek
+    activityLocation: '', //place
+    volunteerHours: '', //time
+    numberOfVolunteers: '', //personnel
+    roleItems: [], //role
   });
+
+  const api = apiCreateVolunteerActivity();
+
+  const createClick = () => {
+    api.mutate({
+      title: datas.title,
+      activityDetails: datas.activityDetails,
+      applicationPeriod: {
+        startDate: datas.applicationPeriod.startDate,
+        endDate: datas.applicationPeriod.endDate,
+      },
+      isRegular: datas.isRegular,
+      workDate: {
+        startDate: datas.workDate.startDate,
+        endDate: datas.workDate.endDate,
+      },
+      dayOfWeek: datas.workDay.map(({ dayId, dayOfWeek }) => ({
+        dayId,
+        dayOfWeek,
+      })),
+      place: datas.activityLocation,
+      time: datas.volunteerHours,
+      personnel: datas.numberOfVolunteers,
+      role: datas.roleItems.map(({ roleId, title }) => ({
+        roleId,
+        title,
+      })),
+    });
+  };
 
   useEffect(() => {
     setDatas((prev) => ({
@@ -87,15 +117,13 @@ export const CreateVolunteerActivity = () => {
 
   const roleAddClick = () => {
     if (roleInput) {
-      setDatas((prev) => {
-        const updatedRoleItems = [...prev.roleItems, roleInput];
-        return {
-          ...prev,
-          roleItems: updatedRoleItems,
-        };
-      });
+      const newRole = { roleId: crypto.randomUUID(), title: roleInput };
+      setDatas((prev) => ({
+        ...prev,
+        roleItems: [...prev.roleItems, newRole],
+      }));
+      setRoleInput('');
     }
-    setRoleInput('');
   };
 
   const handleRoleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -129,10 +157,17 @@ export const CreateVolunteerActivity = () => {
   };
 
   const handleDaysChange = (days: string[]) => {
-    setDatas((prev) => ({
-      ...prev,
-      workDay: days,
-    }));
+    setDatas((prev) => {
+      const newWorkDay = days.map((day) => ({
+        dayId: crypto.randomUUID(),
+        dayOfWeek: day,
+      }));
+
+      return {
+        ...prev,
+        workDay: newWorkDay,
+      };
+    });
   };
 
   useEffect(() => {
@@ -148,8 +183,6 @@ export const CreateVolunteerActivity = () => {
       }));
     }
   }, [datas.isRegular]);
-
-  console.log(datas);
 
   return (
     <CreateVolunteerContainer>
@@ -173,8 +206,6 @@ export const CreateVolunteerActivity = () => {
               label="신청기간"
               onDateChange={handleApplicationPeriodChange}
               value={datas.applicationPeriod}
-              startDate={datas.applicationPeriod.startDate}
-              endDate={datas.applicationPeriod.endDate}
             />
             <DateContainer
               label="봉사기간"
@@ -184,9 +215,7 @@ export const CreateVolunteerActivity = () => {
               onDateChange={handleWorkDateChange}
               onWorkDayChange={handleDaysChange}
               value={datas.workDate}
-              startDate={datas.workDate.startDate}
-              endDate={datas.workDate.endDate}
-              workDay={datas.workDay}
+              workDay={datas.workDay.map((item) => item.dayOfWeek)}
             />
             <Inputs
               label="활동장소"
@@ -218,14 +247,16 @@ export const CreateVolunteerActivity = () => {
                 <AddRoleBtn onClick={roleAddClick}>+</AddRoleBtn>
               </RoleInputContainer>
               <RoleContent>
-                {datas.roleItems.map((role, index) => (
-                  <Keyword key={index}>{role}</Keyword>
+                {datas.roleItems.map((role) => (
+                  <Keyword key={role.roleId}>{role.title}</Keyword>
                 ))}
               </RoleContent>
             </RoleContainer>
           </InputContainer>
         </CreateVolunteerContent>
-        <Button backgroundColor={colors.gray[550]}>생성하기</Button>
+        <Button backgroundColor={colors.gray[550]} onClick={createClick}>
+          생성하기
+        </Button>
       </CreateVolunteerContents>
     </CreateVolunteerContainer>
   );

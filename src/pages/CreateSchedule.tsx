@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, font } from '../theme';
+import { colors } from '../theme';
 import { Button, DateContainer, Inputs, Title } from '../components';
 import { useState } from 'react';
 
@@ -14,6 +14,7 @@ export const CreateSchedule = () => {
       endDate: '',
     },
   });
+
   const handleApplicationPeriodChange = (
     field: 'startDate' | 'endDate',
     value: string
@@ -50,8 +51,6 @@ export const CreateSchedule = () => {
             label="신청기간"
             onDateChange={handleApplicationPeriodChange}
             value={datas.applicationPeriod}
-            startDate={datas.applicationPeriod.startDate}
-            endDate={datas.applicationPeriod.endDate}
           />
         </ContentContainer>
         <Button backgroundColor={colors.gray[550]}>생성하기</Button>

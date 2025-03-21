@@ -54,7 +54,7 @@ export const CalendarContainer = ({ data }: CalendarType) => {
     return schedules && schedules.length > 0 ? (
       <>
         <ScheduleWrapper>
-          {viewBar.map((data, index) => (
+          {viewBar?.map((data, index) => (
             <ScheduleBar
               key={`${data.title}-${index}`}
               $start={formattedDate === data.startDate}
@@ -65,12 +65,12 @@ export const CalendarContainer = ({ data }: CalendarType) => {
           ))}
         </ScheduleWrapper>
 
-        {hiddenBar.length > 0 && (
+        {hiddenBar && hiddenBar.length > 0 && (
           <>
             <DotModal onClick={() => dotClick(formattedDate)} />
             {isModalOpen && (
               <ModalContainer>
-                {hiddenBar.map((data, index) => (
+                {hiddenBar?.map((data, index) => (
                   <ModalNav
                     key={`${data.title}-${index}`}
                     onClick={() => navClick(formattedDate)}
@@ -87,7 +87,7 @@ export const CalendarContainer = ({ data }: CalendarType) => {
   };
 
   const [value, onChange] = useState<Date>(new Date());
-  const [activeStartDate, setActiveStartDate] = useState(new Date());
+  // const [activeStartDate, setActiveStartDate] = useState<Date>(new Date());
   const navigate = useNavigate();
 
   const scheduleAddClick = () => {
@@ -102,12 +102,16 @@ export const CalendarContainer = ({ data }: CalendarType) => {
             <Text>봉사 일정 추가</Text>
           </Container>
           <StyledCalendar
-            onActiveStartDateChange={({ activeStartDate }) =>
-              setActiveStartDate(activeStartDate)
-            }
+            // onActiveStartDateChange={({ activeStartDate }) =>
+            //   setActiveStartDate(activeStartDate || new Date())
+            // }
             //showNeighboringMonth={false} // 전달, 다음달 날짜 숨기기
             value={value}
-            onChange={onChange}
+            onChange={(value) => {
+              if (value instanceof Date) {
+                onChange(value);
+              }
+            }}
             locale="en-US" //영어로
             calendarType="gregory" // 일요일 부터 시작
             nextLabel={
@@ -123,7 +127,7 @@ export const CalendarContainer = ({ data }: CalendarType) => {
             tileContent={tileContent} //날짜 bar 컨텐츠
             next2Label={null}
             prev2Label={null}
-            formatShortWeekday={(local, date) => {
+            formatShortWeekday={(_, date) => {
               const weekdays = [
                 'SUN',
                 'MON',

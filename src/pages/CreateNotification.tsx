@@ -28,7 +28,6 @@ export const CreateNotification = () => {
     }));
   };
 
-  console.log(datas);
 
   return (
     <Container>

@@ -4,7 +4,7 @@ import { Button, Inputs, Title } from '../components';
 import { useRef, useState } from 'react';
 
 type VolunteerHoursGrantedType = {
-  setIsShow?: React.Dispatch<React.SetStateAction<boolean>>; //다른 페이지에서 버튼 클릭 시 창 열림 백그라운드 클릭 시 창 닫힘 설정
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>; //다른 페이지에서 버튼 클릭 시 창 열림 백그라운드 클릭 시 창 닫힘 설정
   isShow?: boolean;
   onClick?: () => void;
 };
@@ -20,13 +20,14 @@ export const VolunteerHoursGrantedModal = ({
     place: string;
   }>({
     detail: '',
-    time: null,
+    time: 0,
     place: '',
   });
 
-  const backRef = useRef();
+  const backRef = useRef<HTMLDivElement | null>(null);
 
-  const backClick = (e: MouseEvent) => {
+  const backClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     if (backRef.current === e.target) setIsShow(false);
   };
 
@@ -39,10 +40,10 @@ export const VolunteerHoursGrantedModal = ({
   };
 
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = Number(e.target.value);
     setDatas((prev) => ({
       ...prev,
-      time: value,
+      time: isNaN(value) ? 0 : value,
     }));
   };
 
