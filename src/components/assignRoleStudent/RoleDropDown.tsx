@@ -3,38 +3,22 @@ import { colors, font } from "../../theme";
 import React, { useState } from "react";
 import { DownArrow } from "../../assets";
 
-interface filterProps {
-  setFilter: React.Dispatch<React.SetStateAction<string>>;
+interface DropDownProps {
+  roles: string[];
 }
 
-export const DropDown = ({ setFilter }: filterProps) => {
+export const RolesDropDown = ({ roles }: DropDownProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>("학년순");
-
-  const dropdowns: string[] = [
-    "학년순",
-    "1-1",
-    "1-2",
-    "1-3",
-    "1-4",
-    "2-1",
-    "2-2",
-    "2-3",
-    "2-4",
-    "3-1",
-    "3-2",
-    "3-3",
-    "3-4",
-  ];
+  const [selected, setSelected] = useState<string>(roles[0]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const selectDropdown = (x: string) => {
-    setSelected(x);
-    setFilter(x);
+  const selectDropdown = (role: string) => {
+    setSelected(role);
     setIsDropdownOpen(false);
+    console.log(role); // 역할 부여 api
   };
 
   return (
@@ -45,13 +29,11 @@ export const DropDown = ({ setFilter }: filterProps) => {
       </Container>
       {isDropdownOpen && (
         <DropdownMenu>
-          {dropdowns
-            .filter((x) => x !== selected)
-            .map((item) => (
-              <DropdownItem key={item} onClick={() => selectDropdown(item)}>
-                <DropdownText>{item}</DropdownText>
-              </DropdownItem>
-            ))}
+          {roles.map((role) => (
+            <DropdownItem key={role} onClick={() => selectDropdown(role)}>
+              <DropdownText>{role}</DropdownText>
+            </DropdownItem>
+          ))}
         </DropdownMenu>
       )}
     </>
@@ -60,14 +42,12 @@ export const DropDown = ({ setFilter }: filterProps) => {
 
 const Container = styled.div`
   position: relative;
-  width: 160px;
-  height: 50px;
+  padding: 15px 18px 15px 50px;
   border: 1px solid ${colors.gray[400]};
   border-radius: 10px;
   background-color: ${colors.gray[550]};
   display: flex;
   align-items: center;
-  padding-left: 55px;
   gap: 28px;
   cursor: pointer;
 `;

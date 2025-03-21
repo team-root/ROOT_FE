@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import { colors, font } from '../../theme';
-import { useEffect, useState } from 'react';
-import { LoginBtn } from '../header';
-import { logo } from '../../assets';
-import { useLocation } from 'react-router-dom';
+import styled from "styled-components";
+import { colors, font } from "../../theme";
+import { useEffect, useState } from "react";
+import { LoginBtn } from "../header";
+import { logo } from "../../assets";
+import { useLocation } from "react-router-dom";
 
 export const Header = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -15,17 +15,17 @@ export const Header = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', updateScroll);
+    window.addEventListener("scroll", updateScroll);
     return () => {
-      window.removeEventListener('scroll', updateScroll);
+      window.removeEventListener("scroll", updateScroll);
     };
   }, []);
 
   const navItems = [
-    { label: '학생봉사 시간 조회/부여', path: '/hours' },
-    { label: '봉사활동 신청 조회/생성', path: '/volunteer-posts' },
-    { label: '봉사 일정 확인', path: '/schedules' },
-    { label: '알림 생성', path: '/notifications' },
+    { label: "학생봉사 시간 조회/부여", path: "/hours" },
+    { label: "봉사활동 신청 조회/생성", path: "/volunteer-posts" },
+    { label: "봉사 일정 확인", path: "/schedules" },
+    { label: "알림 생성", path: "/notifications" },
   ];
   return (
     <HeaderContainer scrollPosition={scrollPosition}>
@@ -43,9 +43,9 @@ export const Header = () => {
       </LogoContainer>
       <LoginContainer>
         {isLogin && (
-          <Nav isActive={location.pathname === '/mypage'}>마이페이지</Nav>
+          <Nav isActive={location.pathname === "/mypage"}>마이페이지</Nav>
         )}
-        <LoginBtn isLogined={isLogin}></LoginBtn>
+        <LoginBtn isLogined={isLogin} setIsLogin={setIsLogin}></LoginBtn>
       </LoginContainer>
     </HeaderContainer>
   );
@@ -65,7 +65,7 @@ const LoginContainer = styled.div`
 
 const HeaderContainer = styled.header<{ scrollPosition: number }>`
   background-color: ${({ scrollPosition }) =>
-    scrollPosition ? colors.gray[600] : 'transparent'};
+    scrollPosition ? colors.gray[600] : "transparent"};
   width: 100vw;
   height: 70px;
   display: flex;
@@ -77,7 +77,7 @@ const HeaderContainer = styled.header<{ scrollPosition: number }>`
   left: 0;
   border-bottom: 1px solid
     ${({ scrollPosition }) =>
-      scrollPosition ? colors.gray[500] : 'transparent'};
+      scrollPosition ? colors.gray[500] : "transparent"};
   z-index: 10;
 `;
 
@@ -96,6 +96,6 @@ const Nav = styled.div<{ isActive: boolean }>`
     -webkit-text-fill-color: transparent;
   `
       : `
-    color: ${colors.gray[700]};
+    color: ${colors.gray[100]};
   `};
 `;

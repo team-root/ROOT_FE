@@ -1,16 +1,38 @@
-import styled from 'styled-components';
 import { colors } from '../../theme';
+import styled from "styled-components";
+import { useState } from "react";
+import { LoginModal } from "../../pages/LoginModal";
 
 type Props = {
   isLogined: boolean;
+  setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const LoginBtn = ({ isLogined }: Props) => {
+export const LoginBtn = ({ isLogined, setIsLogin }: Props) => {
+  const [isLoginModalOpen, setLoginModalOpen] = useState<boolean>(false);
+
+  const handleClick = (isLogined: boolean) => {
+    if (isLogined) {
+      setIsLogin(false);
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+    } else {
+      setLoginModalOpen(true);
+    }
+  };
+
   return (
-    <Container>
-      {isLogined && 'logout'}
-      {!isLogined && 'login'}
-    </Container>
+    <>
+      <Container onClick={() => handleClick(isLogined)}>
+        {isLogined && "logout"}
+        {!isLogined && "login"}
+      </Container>
+      <LoginModal
+        isShow={isLoginModalOpen}
+        setIsShow={setLoginModalOpen}
+        setIsLogin={setIsLogin}
+      />
+    </>
   );
 };
 

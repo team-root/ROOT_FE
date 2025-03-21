@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { colors, font } from '../../theme';
-import { Eyes } from '../../assets/icons/Eyes';
-import { useState } from 'react';
+import styled from "styled-components";
+import { colors, font } from "../../theme";
+import { Eyes } from "../../assets/icons/Eyes";
+import { useEffect, useState } from "react";
 
 type InputType = {
   isLogin?: boolean;
@@ -10,6 +10,7 @@ type InputType = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: () => void;
   value?: string | number;
+  isfail?: boolean;
 };
 
 export const Inputs = ({
@@ -19,6 +20,7 @@ export const Inputs = ({
   onChange,
   ref,
   value,
+  isfail,
 }: InputType) => {
   const [isEyes, setIsEyes] = useState<boolean>(false);
 
@@ -26,16 +28,23 @@ export const Inputs = ({
     setIsEyes(!isEyes);
   };
 
+  useEffect(() => {
+    if (isLogin) {
+      setIsEyes(!isEyes);
+    }
+  }, []);
+
   return (
     <LabelContainer>
       <Label>{label}</Label>
       <FakeInputContainer>
         <InputContainer
-          type={isEyes ? 'password' : 'text'}
+          type={isEyes ? "password" : "text"}
           placeholder={placeholder}
           onChange={onChange}
           ref={ref}
           value={value}
+          isfail={isfail}
         />
         {isLogin && (
           <FakeEyeContainer onClick={eyesClick}>
@@ -60,7 +69,7 @@ const Label = styled.label`
   color: ${colors.gray[300]};
 `;
 
-const InputContainer = styled.input`
+const InputContainer = styled.input<{ isfail?: boolean }>`
   &::placeholder {
     color: ${colors.gray[300]};
   }
@@ -72,6 +81,7 @@ const InputContainer = styled.input`
   border-radius: 10px;
   padding-left: 28px;
   background-color: ${colors.gray[550]};
+  border-color: ${({ isfail }) => (isfail ? colors.error : colors.gray[400])};
 `;
 
 const FakeInputContainer = styled.div`
