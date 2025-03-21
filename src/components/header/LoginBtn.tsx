@@ -1,5 +1,5 @@
+import { colors } from '../../theme';
 import styled from "styled-components";
-import { colors, font } from "../../theme";
 import { useState } from "react";
 import { LoginModal } from "../../pages/LoginModal";
 

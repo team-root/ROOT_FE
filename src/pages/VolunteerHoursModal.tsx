@@ -4,7 +4,7 @@ import { VolunteerHoursContent } from '../components';
 import { useRef } from 'react';
 
 type VolunteerHoursType = {
-  setIsShow?: React.Dispatch<React.SetStateAction<boolean>>; //다른 페이지에서 버튼 클릭 시 창 열림 백그라운드 클릭 시 창 닫힘 설정
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>; //다른 페이지에서 버튼 클릭 시 창 열림 백그라운드 클릭 시 창 닫힘 설정
   isShow?: boolean;
 };
 
@@ -52,9 +52,10 @@ export const VolunteerHoursModal = ({
     },
   ];
 
-  const backRef = useRef();
+  const backRef = useRef<HTMLDivElement | null>(null);
 
-  const backClick = (e: MouseEvent) => {
+  const backClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     if (backRef.current === e.target) setIsShow(false);
   };
 

@@ -171,8 +171,6 @@ export const EditVolunteerActivity = () => {
               label="신청기간"
               onDateChange={handleApplicationPeriodChange}
               value={datas.applicationPeriod}
-              startDate={datas.applicationPeriod.startDate}
-              endDate={datas.applicationPeriod.endDate}
             />
             <DateContainer
               label="봉사기간"
@@ -182,8 +180,6 @@ export const EditVolunteerActivity = () => {
               onDateChange={handleWorkDateChange}
               onWorkDayChange={handleDaysChange}
               value={datas.workDate}
-              startDate={datas.workDate.startDate}
-              endDate={datas.workDate.endDate}
               workDay={datas.workDay}
             />
             <Inputs
@@ -198,7 +194,6 @@ export const EditVolunteerActivity = () => {
                 placeholder="봉사시간을 입력하세요"
                 value={datas.volunteerHours}
                 onChange={handleVolunteerHoursChange}
-                workDay={datas.workDay}
               />
               <Inputs
                 label="봉사인원"

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, font } from '../theme';
+import { colors } from '../theme';
 import { Button, DateContainer, Inputs, Title } from '../components';
 import { useState } from 'react';
 
@@ -50,8 +50,6 @@ export const EditSchedule = () => {
             label="신청기간"
             onDateChange={handleApplicationPeriodChange}
             value={datas.applicationPeriod}
-            startDate={datas.applicationPeriod.startDate}
-            endDate={datas.applicationPeriod.endDate}
           />
         </ContentContainer>
         <Button backgroundColor={colors.gray[550]}>수정하기</Button>

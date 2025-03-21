@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { colors } from '../theme';
 
 export const VolunteerActivityPost = () => {
-  const [datas, setDatas] = useState<[{ postId: number; title: string }]>([
+  const [datas, setDatas] = useState<Array<{ postId: number; title: string }>>([
     {
       postId: 1,
       title: '환경 지킴이 봉사활동',

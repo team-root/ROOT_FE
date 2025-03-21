@@ -21,7 +21,7 @@ type DateType = {
 export const DateContainer = ({
   label,
   onDateChange,
-  isCheck,
+  isCheck = false,
   setIsCheck,
   isRegular,
   onWorkDayChange,
@@ -29,8 +29,9 @@ export const DateContainer = ({
   workDay = [],
 }: DateType) => {
   const checkClick = () => {
-    setIsCheck(!isCheck);
-    console.log(Check);
+    if (setIsCheck !== undefined) {
+      setIsCheck(!isCheck);
+    }
   };
   return (
     <AllContainer>

@@ -9,7 +9,7 @@ type InputType = {
   label?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: () => void;
-  value?: string;
+  value?: string | number;
   isfail?: boolean;
 };
 
