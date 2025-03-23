@@ -47,4 +47,5 @@ const Container = styled.button`
   border-radius: 100px;
   background-color: transparent;
   color: ${colors.gray[300]};
+  ${font.Body3}
 `;

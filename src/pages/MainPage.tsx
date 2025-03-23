@@ -3,14 +3,18 @@ import {
   backgroundLogo,
   laptop,
   nextphoneArrow,
-  nextSectionArrow,
   phone,
   threephone,
   twophone,
 } from "../assets";
 import { colors, font } from "../theme";
+import ArrowAnimation from "../components/common/ArrowAnimation";
 
 export const MainPage = () => {
+  const handleArrowClick = (y: number) => {
+    window.scrollTo({ top: y, left: 0, behavior: "smooth" });
+  };
+
   return (
     <Container>
       <FirstSection>
@@ -19,7 +23,7 @@ export const MainPage = () => {
           ROOT 에서 봉사활동 관리를 시작해보세요!
         </FirstSectionArticle>
         <NextPageDiv>
-          <img src={nextSectionArrow} alt="V" />
+          <ArrowAnimation onClick={() => handleArrowClick(1010)} />
         </NextPageDiv>
       </FirstSection>
       <SecondSection>
@@ -35,7 +39,7 @@ export const MainPage = () => {
           <img src={laptop} alt="노트북" />
         </SecondSectionArticle>
         <NextPageDiv>
-          <img src={nextSectionArrow} alt="V" />
+          <ArrowAnimation onClick={() => handleArrowClick(1840)} />
         </NextPageDiv>
       </SecondSection>
       <ThirdSection>
