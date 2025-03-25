@@ -28,7 +28,6 @@ export const CreateNotification = () => {
     }));
   };
 
-
   return (
     <Container>
       <Content>
@@ -85,5 +84,5 @@ const Container = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
-  margin: 140px 0;
+  margin: 50px 0 120px 0;
 `;
