@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { colors, font } from "../../theme";
 
 const menuItems = [
-  { name: "봉사 내용", path: "/" },
+  { name: "봉사 내용", path: "/view-volunteer-activity" },
   { name: "학생 신청 내역", path: "/applications" },
   { name: "역할 부여하기", path: "/assign-role" },
 ];
@@ -18,7 +18,7 @@ export const VolunteerBar = () => {
       {menuItems.map((item, index) => (
         <React.Fragment key={item.name}>
           <NavItem
-            isSelected={location.pathname === item.path}
+            isSelected={location.pathname.includes(item.path)}
             onClick={() => navigate(item.path)}
           >
             {item.name}

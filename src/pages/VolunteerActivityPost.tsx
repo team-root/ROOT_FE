@@ -1,25 +1,33 @@
-import { useState } from 'react';
-import { Button, Post } from '../components';
-import styled from 'styled-components';
-import { colors } from '../theme';
+import { useState } from "react";
+import { Button, Post } from "../components";
+import styled from "styled-components";
+import { colors } from "../theme";
+import { useNavigate } from "react-router-dom";
 
 export const VolunteerActivityPost = () => {
   const [datas, setDatas] = useState<Array<{ postId: number; title: string }>>([
     {
       postId: 1,
-      title: '환경 지킴이 봉사활동',
+      title: "환경 지킴이 봉사활동",
     },
     {
       postId: 2,
-      title: '환경 지킴이 봉사활동',
+      title: "환경 지킴이 봉사활동",
     },
   ]);
+
+  const navigate = useNavigate();
 
   return (
     <Container>
       <PostContainer>
         {datas.map((data) => (
-          <Post key={data.postId}>{data.title}</Post>
+          <Post
+            key={data.postId}
+            onClick={() => navigate(`/view-volunteer-activity/` + data.postId)}
+          >
+            {data.title}
+          </Post>
         ))}
       </PostContainer>
       <BtnContainer>
