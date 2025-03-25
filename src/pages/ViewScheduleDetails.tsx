@@ -82,7 +82,7 @@ const ScheduleDetailsContainer = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
-  margin-top: 140px;
+  margin-top: 50px;
 `;
 
 const AllContentContainer = styled.div`
