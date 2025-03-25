@@ -3,12 +3,13 @@ import { colors, font } from "../../theme";
 import { useEffect, useState } from "react";
 import { LoginBtn } from "../header";
 import { logo } from "../../assets";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const location = useLocation();
   const [scrollPosition, setScrollPosition] = useState<number>(0);
+  const navigate = useNavigate();
 
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
@@ -22,19 +23,28 @@ export const Header = () => {
   }, []);
 
   const navItems = [
-    { label: "학생봉사 시간 조회/부여", path: "/hours" },
-    { label: "봉사활동 신청 조회/생성", path: "/volunteer-posts" },
-    { label: "봉사 일정 확인", path: "/schedules" },
-    { label: "알림 생성", path: "/notifications" },
+    { label: "학생봉사 시간 조회/부여", path: "/student-search" },
+    { label: "봉사활동 신청 조회/생성", path: "/volunteer-activity-post" },
+    { label: "봉사 일정 확인", path: "/schedule" },
+    { label: "알림 생성", path: "/create-notification" },
   ];
   return (
     <HeaderContainer scrollPosition={scrollPosition}>
       <LogoContainer>
-        <img src={logo} alt="logo" />
+        <img
+          src={logo}
+          alt="logo"
+          onClick={() => navigate("/")}
+          style={{ cursor: "pointer" }}
+        />
         {isLogin && (
           <NavContainer>
             {navItems.map((nav) => (
-              <Nav key={nav.path} isActive={location.pathname === nav.path}>
+              <Nav
+                key={nav.path}
+                isActive={location.pathname === nav.path}
+                onClick={() => navigate(nav.path)}
+              >
                 {nav.label}
               </Nav>
             ))}
@@ -43,7 +53,12 @@ export const Header = () => {
       </LogoContainer>
       <LoginContainer>
         {isLogin && (
-          <Nav isActive={location.pathname === "/mypage"}>마이페이지</Nav>
+          <Nav
+            isActive={location.pathname === "/mypage"}
+            onClick={() => navigate("/mypage")}
+          >
+            마이페이지
+          </Nav>
         )}
         <LoginBtn isLogined={isLogin} setIsLogin={setIsLogin}></LoginBtn>
       </LoginContainer>
@@ -98,4 +113,5 @@ const Nav = styled.div<{ isActive: boolean }>`
       : `
     color: ${colors.gray[100]};
   `};
+  cursor: pointer;
 `;

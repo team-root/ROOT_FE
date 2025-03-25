@@ -1,6 +1,6 @@
 import { colors, font } from "../../theme";
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoginModal } from "../../pages/LoginModal";
 
 type Props = {
@@ -20,6 +20,12 @@ export const LoginBtn = ({ isLogined, setIsLogin }: Props) => {
       setLoginModalOpen(true);
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setIsLogin(true);
+    }
+  });
 
   return (
     <>

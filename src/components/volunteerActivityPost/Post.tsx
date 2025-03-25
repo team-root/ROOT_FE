@@ -1,13 +1,18 @@
-import styled from 'styled-components';
-import { colors, font } from '../../theme';
+import styled from "styled-components";
+import { colors, font } from "../../theme";
 
 type PostType = {
   children: string;
   key: number;
+  onClick: () => void;
 };
 
-export const Post = ({ children, key }: PostType) => {
-  return <PostContainer key={key}>{children}</PostContainer>;
+export const Post = ({ children, key, onClick }: PostType) => {
+  return (
+    <PostContainer key={key} onClick={onClick}>
+      {children}
+    </PostContainer>
+  );
 };
 
 const PostContainer = styled.div`

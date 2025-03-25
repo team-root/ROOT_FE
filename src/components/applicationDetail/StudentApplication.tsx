@@ -18,7 +18,7 @@ export const StudentApplication = ({
       <ContentBox>
         <LeftBox>
           {name}
-          <Grade>{grade}</Grade>
+          <Grade>{grade}학년</Grade>
         </LeftBox>
         <RightBox>
           <BlueBtn>수락</BlueBtn>
