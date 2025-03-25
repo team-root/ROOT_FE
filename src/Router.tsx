@@ -9,14 +9,13 @@ import {
   Schedule,
   VolunteerActivityPost,
   CreateNotification,
+  StudentSearchPage,
+  MainPage,
+  VolunteerContentPage,
+  ApplicationDetails,
+  AssignRolesPage,
+  Mypage,
 } from "./pages";
-import { StudentSearchPage } from "./pages/StudentSearchPage";
-import { MainPage } from "./pages/MainPage";
-import { VolunteerContentPage } from "./pages/VolunteerContentPage";
-import { ApplicationDetails } from "./pages/ApplicationDetails";
-import { AssignRoleStudent } from "./components";
-import { AssignRolesPage } from "./pages/AssignRolesPage";
-import { Mypage } from "./pages/Mypage";
 
 export const Router = createBrowserRouter([
   {
