@@ -265,7 +265,7 @@ export const CreateVolunteerActivity = () => {
 const CreateVolunteerContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin: 140px 0 60px 0;
+  margin: 50px 0 60px 0;
 `;
 
 const CreateVolunteerContent = styled.div`

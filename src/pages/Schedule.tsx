@@ -34,5 +34,5 @@ const ScheduleContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100vw;
-  margin: 100px 0 120px 0;
+  margin: 50px 0 120px 0;
 `;

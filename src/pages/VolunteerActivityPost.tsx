@@ -33,7 +33,7 @@ const Container = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
-  margin: 120px 0;
+  margin: 50px 0 60px 0;
 `;
 
 const BtnContainer = styled.div`
