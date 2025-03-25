@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { colors, font } from "../theme";
 import { Button, Inputs } from "../components";
 import { useEffect, useRef, useState } from "react";
-import { login } from "../apis/login";
+import { login, LoginRequest, useLogin } from "../apis/login";
+import { useMutation } from "@tanstack/react-query";
 
 type LoginModalProps = {
   isShow?: boolean;
@@ -25,19 +26,20 @@ export const LoginModal = ({
     setIsFail(false);
   };
 
-  const handleLogin = async () => {
-    try {
-      const response = await login({ xquareId, password, deviceToken: null });
-      console.log("로그인 성공", response);
-      setIsShow(false);
-      setIsFail(false);
-      setIsLogin(true);
-      setPassword("");
-      setXquareId("");
-    } catch (error) {
-      console.log("로그인 실패", error);
-      setIsFail(true);
-    }
+  const loginMutation = useLogin({
+    setIsShow,
+    setIsFail,
+    setIsLogin,
+    setPassword,
+    setXquareId,
+  });
+
+  const handleLogin = () => {
+    loginMutation.mutate({
+      xquareId,
+      password,
+      deviceToken: null,
+    });
   };
 
   useEffect(() => {
