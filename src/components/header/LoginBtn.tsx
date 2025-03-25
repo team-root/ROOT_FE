@@ -1,4 +1,4 @@
-import { colors } from '../../theme';
+import { colors, font } from "../../theme";
 import styled from "styled-components";
 import { useState } from "react";
 import { LoginModal } from "../../pages/LoginModal";
@@ -47,5 +47,5 @@ const Container = styled.button`
   border-radius: 100px;
   background-color: transparent;
   color: ${colors.gray[300]};
-  ${font.Body3}
+  ${font.Body3};
 `;
