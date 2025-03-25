@@ -139,7 +139,8 @@ export const VolunteerContentPage = () => {
 
 const Container = styled.div`
   width: 100vw;
-  height: calc(100vh - 70px);
+  margin-top: 70px;
+  height: 100vh;
   padding-top: 70px;
   overflow: auto;
 

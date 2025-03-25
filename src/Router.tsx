@@ -1,5 +1,5 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { RootLayout } from './RootLayout';
+import { createBrowserRouter } from "react-router-dom";
+import { RootLayout } from "./RootLayout";
 import {
   CreateSchedule,
   CreateVolunteerActivity,
@@ -9,48 +9,74 @@ import {
   Schedule,
   VolunteerActivityPost,
   CreateNotification,
-} from './pages';
+  StudentSearchPage,
+  MainPage,
+  VolunteerContentPage,
+  ApplicationDetails,
+  AssignRolesPage,
+  Mypage,
+} from "./pages";
 
 export const Router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <RootLayout />,
     children: [
       {
-        path: '',
-        element: <div>hello</div>,
+        path: "/",
+        element: <MainPage />,
       },
       {
-        path: '/create-volunteer-activity',
+        path: "/create-volunteer-activity",
         element: <CreateVolunteerActivity />,
       },
       {
-        path: '/edit-volunteer-activity/:postid',
+        path: "/edit-volunteer-activity/:postid",
         element: <EditVolunteerActivity />,
       },
       {
-        path: '/create-schedule',
+        path: "/create-schedule",
         element: <CreateSchedule />,
       },
       {
-        path: '/edit-schedule',
+        path: "/edit-schedule",
         element: <EditSchedule />,
       },
       {
-        path: '/view-schedule-details/:scheduleid',
+        path: "/view-schedule-details/:scheduleid",
         element: <ViewScheduleDetails />,
       },
       {
-        path: '/schedule',
+        path: "/schedule",
         element: <Schedule />,
       },
       {
-        path: '/volunteer-activity-post',
+        path: "/volunteer-activity-post",
         element: <VolunteerActivityPost />,
       },
       {
-        path: '/create-notification',
+        path: "/create-notification",
         element: <CreateNotification />,
+      },
+      {
+        path: "/student-search",
+        element: <StudentSearchPage />,
+      },
+      {
+        path: "/view-volunteer-activity/:postid",
+        element: <VolunteerContentPage />,
+      },
+      {
+        path: "/applications",
+        element: <ApplicationDetails />,
+      },
+      {
+        path: "/assign-role",
+        element: <AssignRolesPage />,
+      },
+      {
+        path: "/mypage",
+        element: <Mypage />,
       },
     ],
   },
