@@ -28,6 +28,7 @@ const ArrowContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 5px;
+  cursor: pointer;
 `;
 
 const Arrow = styled.img<{ delay?: string }>`
