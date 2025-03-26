@@ -1,17 +1,18 @@
-import axios from 'axios';
-import { refreshToken } from './refreshToken';
+import axios from "axios";
+import { refreshToken } from "./refreshToken";
+import { getCookie, removeCookie, setCookies } from "./cookie";
 
 export const instance = axios.create({
-  baseURL: import.meta.env.VITE_ROOT_BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
 // 헤더 토큰 자동 추가
 instance.interceptors.request.use(
   (config) => {
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = getCookie("accessToken");
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
@@ -30,10 +31,10 @@ instance.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const storedRefreshToken = localStorage.getItem('refreshToken');
+        const storedRefreshToken = getCookie("refreshToken");
 
         if (!storedRefreshToken) {
-          window.location.href = '/login';
+          window.location.href = "/login";
           return Promise.reject(error);
         }
 
@@ -41,14 +42,14 @@ instance.interceptors.response.use(
           accessToken: storedRefreshToken,
         });
 
-        localStorage.setItem('accessToken', newToken.accessToken);
+        setCookies("accessToken", newToken.accessToken);
 
         originalRequest.headers.Authorization = `Bearer ${newToken.accessToken}`;
         return instance(originalRequest);
       } catch (refreshError) {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        window.location.href = '/';
+        removeCookie("accessToken");
+        removeCookie("refreshToken");
+        window.location.href = "/";
         return Promise.reject(refreshError);
         //refreshToken 만료시 자동 로그아웃
       }
