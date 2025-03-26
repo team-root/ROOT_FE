@@ -2,6 +2,7 @@ import { colors, font } from "../../theme";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { LoginModal } from "../../pages/LoginModal";
+import { getCookie, removeCookie } from "../../apis/cookie";
 
 type Props = {
   isLogined: boolean;
@@ -14,15 +15,15 @@ export const LoginBtn = ({ isLogined, setIsLogin }: Props) => {
   const handleClick = (isLogined: boolean) => {
     if (isLogined) {
       setIsLogin(false);
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
+      removeCookie("accessToken");
+      removeCookie("refreshToken");
     } else {
       setLoginModalOpen(true);
     }
   };
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
+    if (getCookie("accessToken")) {
       setIsLogin(true);
     }
   });

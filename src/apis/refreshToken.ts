@@ -1,4 +1,5 @@
-import { instance } from './instance';
+import { setCookies } from "./cookie";
+import { instance } from "./instance";
 
 interface Token {
   accessToken: string;
@@ -7,7 +8,7 @@ interface Token {
 export const refreshToken = async (data: Token): Promise<Token> => {
   const response = await instance.post<Token>('/auth/refresh', data);
 
-  localStorage.setItem('accessToken', response.data.accessToken);
+  setCookies("accessToken", response.data.accessToken);
 
   return response.data;
 };
