@@ -1,3 +1,4 @@
+import { setCookies } from "./cookie";
 import { instance } from "./instance";
 import { useMutation } from "@tanstack/react-query";
 
@@ -16,6 +17,8 @@ export const login = async (data: LoginRequest): Promise<LoginResponse> => {
   const response = await instance.post<LoginResponse>("/auth/login", data);
   localStorage.setItem("accessToken", response.data.accessToken);
   localStorage.setItem("refreshToken", response.data.refreshToken);
+  setCookies("accessToken", response.data.accessToken);
+  setCookies("refreshToken", response.data.refreshToken);
   return response.data;
 };
 
