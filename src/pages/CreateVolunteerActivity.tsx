@@ -263,12 +263,14 @@ export const CreateVolunteerActivity = () => {
 };
 
 const CreateVolunteerContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
-  margin: 50px 0 60px 0;
+  padding: 60px 280px;
 `;
 
 const CreateVolunteerContent = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -276,6 +278,7 @@ const CreateVolunteerContent = styled.div`
 `;
 
 const CreateVolunteerContents = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -322,7 +325,7 @@ const SubInputContainer = styled.div`
 `;
 
 const InputContainer = styled.div`
-  width: 840px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 32px;

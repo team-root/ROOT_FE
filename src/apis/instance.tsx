@@ -20,7 +20,7 @@ instance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// accessToken 만료시 자동 갱신
+//accessToken 만료시 자동 갱신
 instance.interceptors.response.use(
   (response) => response,
   async (error) => {

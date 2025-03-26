@@ -25,6 +25,7 @@ interface CreateVolunteerActivity {
 
 export const apiCreateVolunteerActivity = () => {
   const accessToken = localStorage.getItem('accessToken');
+
   return useMutation({
     mutationFn: async (data: CreateVolunteerActivity) => {
       const response = await instance.post('/posts', data, {

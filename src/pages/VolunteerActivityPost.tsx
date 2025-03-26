@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { Button, Post } from "../components";
-import styled from "styled-components";
-import { colors } from "../theme";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { Button, Post } from '../components';
+import styled from 'styled-components';
+import { colors } from '../theme';
+import { useNavigate } from 'react-router-dom';
 
 export const VolunteerActivityPost = () => {
   const [datas, setDatas] = useState<Array<{ postId: number; title: string }>>([
     {
       postId: 1,
-      title: "환경 지킴이 봉사활동",
+      title: '환경 지킴이 봉사활동',
     },
     {
       postId: 2,
-      title: "환경 지킴이 봉사활동",
+      title: '환경 지킴이 봉사활동',
     },
   ]);
 
@@ -41,7 +41,7 @@ const Container = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
-  margin: 50px 0 60px 0;
+  padding: 60px 120px;
 `;
 
 const BtnContainer = styled.div`
@@ -51,7 +51,7 @@ const BtnContainer = styled.div`
 `;
 
 const PostContainer = styled.div`
-  width: 1400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 32px;

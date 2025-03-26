@@ -227,12 +227,14 @@ export const EditVolunteerActivity = () => {
 };
 
 const EditVolunteerContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
-  margin: 50px 0 60px 0;
+  padding: 60px 280px;
 `;
 
 const EditVolunteerContent = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -240,6 +242,7 @@ const EditVolunteerContent = styled.div`
 `;
 
 const EditVolunteerContents = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -286,7 +289,7 @@ const SubInputContainer = styled.div`
 `;
 
 const InputContainer = styled.div`
-  width: 840px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 32px;

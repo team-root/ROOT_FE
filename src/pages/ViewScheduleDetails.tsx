@@ -79,10 +79,10 @@ const DateContentContainer = styled.div`
 `;
 
 const ScheduleDetailsContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  padding: 60px 160px;
 `;
 
 const AllContentContainer = styled.div`
@@ -90,7 +90,7 @@ const AllContentContainer = styled.div`
   flex-direction: column;
   align-items: end;
   justify-content: space-between;
-  width: 1220px;
+  width: 100%;
   height: 600px;
 `;
 

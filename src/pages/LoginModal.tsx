@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { colors, font } from "../theme";
-import { Button, Inputs } from "../components";
-import { useEffect, useRef, useState } from "react";
-import { login } from "../apis/login";
+import styled from 'styled-components';
+import { colors, font } from '../theme';
+import { Button, Inputs } from '../components';
+import { useEffect, useRef, useState } from 'react';
+import { login } from '../apis/login';
 
 type LoginModalProps = {
   isShow?: boolean;
@@ -16,8 +16,8 @@ export const LoginModal = ({
   setIsLogin,
 }: LoginModalProps) => {
   const backRef = useRef(null);
-  const [xquareId, setXquareId] = useState("");
-  const [password, setPassword] = useState("");
+  const [xquareId, setXquareId] = useState('');
+  const [password, setPassword] = useState('');
   const [isFail, setIsFail] = useState<boolean>(false);
 
   const backClick = (e: React.MouseEvent) => {
@@ -28,14 +28,14 @@ export const LoginModal = ({
   const handleLogin = async () => {
     try {
       const response = await login({ xquareId, password, deviceToken: null });
-      console.log("로그인 성공", response);
+      console.log('로그인 성공', response);
       setIsShow(false);
       setIsFail(false);
       setIsLogin(true);
-      setPassword("");
-      setXquareId("");
+      setPassword('');
+      setXquareId('');
     } catch (error) {
-      console.log("로그인 실패", error);
+      console.log('로그인 실패', error);
       setIsFail(true);
     }
   };
