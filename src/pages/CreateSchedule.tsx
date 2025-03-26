@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { colors } from '../theme';
 import { Button, DateContainer, Inputs, Title } from '../components';
 import { useState } from 'react';
+import { apiCreateSchedule } from '../apis';
 
 export const CreateSchedule = () => {
   const [datas, setDatas] = useState<{
@@ -36,6 +37,16 @@ export const CreateSchedule = () => {
     }));
   };
 
+  const createApi = apiCreateSchedule();
+
+  const createClick = () => {
+    createApi.mutate({
+      title: datas.title,
+      startDate: datas.applicationPeriod.startDate,
+      endDate: datas.applicationPeriod.endDate,
+    });
+  };
+
   return (
     <ScheduleContainer>
       <ScheduleContent>
@@ -53,7 +64,9 @@ export const CreateSchedule = () => {
             value={datas.applicationPeriod}
           />
         </ContentContainer>
-        <Button backgroundColor={colors.gray[550]}>생성하기</Button>
+        <Button onClick={createClick} backgroundColor={colors.gray[550]}>
+          생성하기
+        </Button>
       </ScheduleContent>
     </ScheduleContainer>
   );
@@ -68,7 +81,7 @@ const ContentContainer = styled.div`
 `;
 
 const ScheduleContent = styled.div`
-  width: 840px;
+  width: 100%;
   height: 600px;
   display: flex;
   flex-direction: column;
@@ -77,8 +90,8 @@ const ScheduleContent = styled.div`
 `;
 
 const ScheduleContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  padding: 60px 280px;
 `;

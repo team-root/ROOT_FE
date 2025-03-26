@@ -67,7 +67,7 @@ const ContentContainer = styled.div`
 `;
 
 const ScheduleContent = styled.div`
-  width: 840px;
+  width: 100%;
   height: 600px;
   display: flex;
   flex-direction: column;
@@ -76,8 +76,8 @@ const ScheduleContent = styled.div`
 `;
 
 const ScheduleContainer = styled.div`
-  width: 100vw;
+  padding: 60px 280px;
+  width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
 `;

@@ -55,6 +55,7 @@ export const DayContainer = ({
 
 const Container = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
 `;
 const FakeDate = styled.button<{ isCheck: boolean }>`

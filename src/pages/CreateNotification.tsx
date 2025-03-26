@@ -71,7 +71,7 @@ const ContentContainer = styled.div`
 `;
 
 const Content = styled.div`
-  width: 840px;
+  width: 100%;
   height: 600px;
   display: flex;
   flex-direction: column;
@@ -81,8 +81,8 @@ const Content = styled.div`
 `;
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
-  margin: 50px 0 120px 0;
+  padding: 60px 280px;
 `;

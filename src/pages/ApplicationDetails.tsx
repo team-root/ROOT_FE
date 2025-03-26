@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { StudentApplication, VolunteerBar } from "../components";
-import { colors } from "../theme";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { StudentApplication, VolunteerBar } from '../components';
+import { colors } from '../theme';
 
 interface Applicant {
   applicationId: number;
@@ -22,7 +22,7 @@ export const ApplicationDetails = () => {
       {
         applicationId: 1,
         userId: 2,
-        name: "박지연",
+        name: '박지연',
         grade: 1,
         classNum: 1,
         number: 12,
@@ -30,7 +30,7 @@ export const ApplicationDetails = () => {
       {
         applicationId: 2,
         userId: 1,
-        name: "김시우",
+        name: '김시우',
         grade: 1,
         classNum: 1,
         number: 3,
@@ -38,7 +38,7 @@ export const ApplicationDetails = () => {
       {
         applicationId: 3,
         userId: 3,
-        name: "이서연",
+        name: '이서연',
         grade: 2,
         classNum: 3,
         number: 8,
@@ -46,7 +46,7 @@ export const ApplicationDetails = () => {
       {
         applicationId: 4,
         userId: 4,
-        name: "정민호",
+        name: '정민호',
         grade: 3,
         classNum: 2,
         number: 5,
@@ -54,7 +54,7 @@ export const ApplicationDetails = () => {
       {
         applicationId: 5,
         userId: 5,
-        name: "최다은",
+        name: '최다은',
         grade: 2,
         classNum: 4,
         number: 9,
@@ -62,7 +62,7 @@ export const ApplicationDetails = () => {
       {
         applicationId: 6,
         userId: 6,
-        name: "한지후",
+        name: '한지후',
         grade: 3,
         classNum: 1,
         number: 17,

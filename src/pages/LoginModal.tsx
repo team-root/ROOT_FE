@@ -16,14 +16,15 @@ export const LoginModal = ({
   setIsLogin,
 }: LoginModalProps) => {
   const backRef = useRef(null);
-  const [xquareId, setXquareId] = useState("");
-  const [password, setPassword] = useState("");
+  const [xquareId, setXquareId] = useState('');
+  const [password, setPassword] = useState('');
   const [isFail, setIsFail] = useState<boolean>(false);
 
   const backClick = (e: React.MouseEvent) => {
     if (backRef.current === e.target) setIsShow && setIsShow(false);
     setIsFail(false);
   };
+
 
   const loginMutation = useLogin({
     setIsShow,
